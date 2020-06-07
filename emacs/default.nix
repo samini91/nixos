@@ -7,13 +7,13 @@
     BAR = "$FOO World!";
   };
 
-  home-manager.users.gorgeous.home.file = {
-
-    "abc".source = builtins.fetchGit {
-      url = "https://github.com/samini91/Emacs-Init.git";
-      ref = "master";
-    };
-    
-  };
+#  home-manager.users.gorgeous.home.file = {
+#
+#    ".emacs.d".source = builtins.fetchGit {
+#      url = "https://github.com/samini91/Emacs-Init.git";
+#      ref = "master";
+#    };
+#    
+#  };
 
 }

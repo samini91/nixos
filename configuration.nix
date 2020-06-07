@@ -78,6 +78,7 @@
 		pkgs.git
 		pkgs.firefox
     pkgs.ripgrep
+    pkgs.gnumake
 	];
   
 
