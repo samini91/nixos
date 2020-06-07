@@ -10,6 +10,7 @@
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./emacs/default.nix
     ./haskell.nix
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
   ];
