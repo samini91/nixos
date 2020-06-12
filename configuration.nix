@@ -10,6 +10,7 @@
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./modules
     ./emacs/default.nix
     ./haskell.nix
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
@@ -103,20 +104,27 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "us";
-  services.xserver.xkbOptions = "eurosign:e";
+  services.xserver.xkbOptions = "caps:ctrl_modifier";
 
   # Enable touchpad support.
   # services.xserver.libinput.enable = true;
 
   # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  services.xserver =
+    {
+      desktopManager.plasma5.enable = true;
+      #windowManager.xmonad.enable = true;
+      displayManager.sddm.enable = true;
+    };
+  
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # passwd gorgeous
+  #users.users.gorgeous = {
   users.users.gorgeous = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
   };
   
 

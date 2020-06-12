@@ -7,6 +7,10 @@
     BAR = "$FOO World!";
   };
 
+#  home.packages = [
+#    pkgs.youtube-dl
+#  ];
+  #home-manager.users.gorgeous.services.xserver.windowManager.xmonad.enable = true;
 #  home-manager.users.gorgeous.home.file = {
 #
 #    ".emacs.d".source = builtins.fetchGit {
