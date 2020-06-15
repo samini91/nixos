@@ -10,7 +10,7 @@
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./modules
+#    ./modules
     ./emacs/default.nix
     ./haskell.nix
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
@@ -24,18 +24,7 @@
     };                              
   };
 
-
-  #home-manager.users.my_username = { ... }       
-
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-
+  nixpkgs.config.allowUnfree = true; 
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -123,13 +112,10 @@
   # passwd gorgeous
   #users.users.gorgeous = {
   users.users.gorgeous = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
+     isNormalUser = true;
+     extraGroups = [ "wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
   };
   
-
-
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

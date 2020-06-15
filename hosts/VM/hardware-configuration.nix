@@ -6,6 +6,16 @@
 {
   imports = [ ];
 
+    # Use the GRUB 2 boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  # boot.loader.grub.efiSupport = true;
+  # boot.loader.grub.efiInstallAsRemovable = true;
+  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  # Define on which hard drive you want to install Grub.
+  # this should be in hardware config...
+  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+
   boot.initrd.availableKernelModules = [ "ata_piix" "ohci_pci" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
