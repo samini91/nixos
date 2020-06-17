@@ -3,6 +3,9 @@ Deploy:
 VM:
 	ln -sf hosts/VM/hardware-configuration.nix hardware-configuration.nix
 	sudo nixos-rebuild switch
-DOIT:
+MiniCompLink:
+	ln -sf hosts/MiniComp/hardware-configuration.nix hardware-configuration.nix
+	ln -sf hosts/MiniComp/configuration.nix configuration.nix
+NixOSLink:
 	rm -rf /etc/nixos
 	ln -sf $$(pwd) /etc/nixos

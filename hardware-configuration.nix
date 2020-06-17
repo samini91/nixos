@@ -1,1 +1,1 @@
-hosts/VM/hardware-configuration.nix
+hosts/MiniComp/hardware-configuration.nix
