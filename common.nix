@@ -3,18 +3,11 @@
 {
   # use absolute path here?
   imports = [
-    ./emacs/default.nix
-    ./haskell.nix
+    ./dev/emacs.nix
+    ./dev/haskell.nix
+    ./usr/gorgeous.nix
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
   ];
-
-  home-manager.users.gorgeous = {
-    programs.git = {
-      enable = true;
-      userName = "samini91";
-      userEmail = "samini91@gmail.com";
-    };                              
-  };
 
   nixpkgs.config.allowUnfree = true; 
   # networking.hostName = "nixos"; # Define your hostname.
@@ -37,13 +30,19 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
 
-  environment.systemPackages = [
-   	pkgs.emacs
-		pkgs.git
-		pkgs.firefox
-    pkgs.ripgrep
-    pkgs.gnumake
+  environment.systemPackages = with pkgs; [
+   	emacs
+		git
+		firefox
+    ripgrep
+    gnumake
+    sshfs
+    wget
+    alacritty
+    ncmpcpp
 	];
+
+  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
   
 
   # List services that you want to enable:
@@ -74,12 +73,5 @@
       #windowManager.xmonad.enable = true;
       displayManager.sddm.enable = true;
     };
-  
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.gorgeous = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
-  };
 }
 
