@@ -5,11 +5,13 @@
   imports = [
     ./dev/emacs.nix
     ./dev/haskell.nix
+    ./dev/dotnet.nix
     ./usr/gorgeous.nix
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
   ];
 
-  nixpkgs.config.allowUnfree = true; 
+
+  
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -30,6 +32,8 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
 
+  nixpkgs.config.allowUnfree = true;
+  
   environment.systemPackages = with pkgs; [
    	emacs
 		git
@@ -40,10 +44,10 @@
     wget
     alacritty
     ncmpcpp
+    mpd    
 	];
 
-  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
-  
+  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
 
   # List services that you want to enable:
 

@@ -1,42 +1,52 @@
 { config, pkgs, ... }:
 
 {
-  #dotfiledir = 
+  #home-manager.users.gorgeous.nixpkgs.config = import ./nixpkgs-config.nix;
+  home-manager.users.gorgeous.nixpkgs.config.allowUnfree = true;
+  #dotfiledir =
+
   home-manager.users.gorgeous = {
-      programs.git = {
+    
+    programs.git = {
       enable = true;
       userName = "samini91";
       userEmail = "samini91@gmail.com";
+    };
+
+    programs.alacritty = {
+      enable = true;
+      settings = {
+    	  font.size = 11;
+        shell.program = "/usr/local/bin/fish";
       };
+    };
 
-      programs.alacritty = {
-        enable = true;
-        settings = {
-    	    font.size = 11;
-          shell.program = "/usr/local/bin/fish";
-        };
-      };
+    programs.vscode = {
+      enable = true;
+    };
 
-      home.file.".config/ncmpcpp/config".source = ./config/ncmpcpp/config;
+    home.file.".config/ncmpcpp/config".source = ./config/ncmpcpp/config;
+
+    
 
 
-#        builtins.fetchGit {
-#          url = "https://github.com/samini91/Emacs-Init.git";
-#          ref = "master";
-#        };
-        #"../config/ncmpcpp/config";
-      
-      #configFile."i3blocks/config".source = "${my-dotfile-dir}/i3blocks.conf";
-      #xdg.configFile."i3blocks/config".source = "${my-dotfile-dir}/i3blocks.conf"
+    #        builtins.fetchGit {
+    #          url = "https://github.com/samini91/Emacs-Init.git";
+    #          ref = "master";
+    #        };
+    #"../config/ncmpcpp/config";
+    
+    #configFile."i3blocks/config".source = "${my-dotfile-dir}/i3blocks.conf";
+    #xdg.configFile."i3blocks/config".source = "${my-dotfile-dir}/i3blocks.conf"
 
-#      home.file = {
-#
-#        "abc".source = builtins.fetchGit {
-#          url = "https://github.com/samini91/Emacs-Init.git";
-#          ref = "master";
-#        };
-#        
-#      };
+    #      home.file = {
+    #
+    #        "abc".source = builtins.fetchGit {
+    #          url = "https://github.com/samini91/Emacs-Init.git";
+    #          ref = "master";
+    #        };
+    #        
+    #      };
 
 
   };
