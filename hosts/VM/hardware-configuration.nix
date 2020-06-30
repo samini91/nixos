@@ -6,29 +6,17 @@
 {
   imports = [ ];
 
-    # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  # this should be in hardware config...
-  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-
-  boot.initrd.availableKernelModules = [ "ata_piix" "ohci_pci" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "ata_piix" "ohci_pci" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/baaf741a-87e9-4b79-b328-81140f5c5ec0";
+    { device = "/dev/disk/by-uuid/2b4d0395-3daa-4392-8167-eec14ff7c27b";
       fsType = "ext4";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/61985e8a-6c14-4b16-8d5f-2105a9af9f03"; }
-    ];
+  swapDevices = [ ];
 
   nix.maxJobs = lib.mkDefault 1;
   virtualisation.virtualbox.guest.enable = true;
