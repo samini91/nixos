@@ -6,7 +6,7 @@
     ./dev/emacs.nix
     ./dev/haskell.nix
     ./dev/dotnet.nix
-    ./dev/python.nix
+    ./dev/python/python.nix
     ./usr/gorgeous.nix
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
   ];
