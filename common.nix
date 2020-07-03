@@ -6,6 +6,7 @@
     ./dev/emacs.nix
     ./dev/haskell.nix
     ./dev/dotnet.nix
+    ./dev/python.nix
     ./usr/gorgeous.nix
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
   ];
@@ -33,7 +34,7 @@
   # started in user sessions.
 
   nixpkgs.config.allowUnfree = true;
-  
+
   environment.systemPackages = with pkgs; [
    	emacs
 		git
@@ -44,7 +45,8 @@
     wget
     alacritty
     ncmpcpp
-    mpd    
+    mpd
+    keepassxc
 	];
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
