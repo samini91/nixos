@@ -3,6 +3,6 @@
 {  
   imports = [
  #   ./mycookies/requirements.nix
-    ./packages.nix
+#    ./packages.nix
   ];
 }

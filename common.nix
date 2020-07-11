@@ -47,6 +47,7 @@
     ncmpcpp
     mpd
     keepassxc
+    gcc
 	];
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
