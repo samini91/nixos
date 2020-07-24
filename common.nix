@@ -48,6 +48,8 @@
     mpd
     keepassxc
     gcc
+    postgresql
+    zlib
 	];
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
