@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, options, pkgs, ... }:
 
 {
   # use absolute path here?
@@ -11,6 +11,11 @@
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
   ];
 
+  nix.nixPath =
+    # Prepend default nixPath values.
+    options.nix.nixPath.default ++ 
+    # Append our nixpkgs-overlays.
+    [ "nixpkgs-overlays=/etc/nixos/overlays/" ];
 
   
   # networking.hostName = "nixos"; # Define your hostname.
