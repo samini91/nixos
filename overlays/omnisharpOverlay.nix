@@ -1,4 +1,5 @@
 self: super: {
+  # this doesnt work... 
   myomnisharp = self.stdenv.mkDerivation rec {
 
     pname = "omnisharp-roslyn";
