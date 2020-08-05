@@ -17,7 +17,7 @@
     # Append our nixpkgs-overlays.
     [ "nixpkgs-overlays=/etc/nixos/overlays/" ];
 
-  
+
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -41,6 +41,8 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    xmobar
+    dmenu
    	emacs
 		git
 		firefox
@@ -78,13 +80,17 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "caps:ctrl_modifier";
-
+  #services.xserver.xkbOptions = "ctrl:swapcaps";
+  
+  
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
   services.xserver =
     {
-      desktopManager.plasma5.enable = true;
-      #windowManager.xmonad.enable = true;
+      #desktopManager.plasma5.enable = true;
+      windowManager.xmonad.enable = true;
+      windowManager.xmonad.enableContribAndExtras = true;
+      
       displayManager.sddm.enable = true;
     };
 }

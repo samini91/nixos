@@ -1,1 +1,1 @@
-hosts/MiniComp/configuration.nix
+hosts/VM/configuration.nix
