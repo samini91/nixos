@@ -28,7 +28,9 @@
     home.file.".config/ncmpcpp/config".source = ./config/ncmpcpp/config;
 
     # reload by modifier-shift-q
+
     home.file.".xmonad/xmonad.hs".source = ./config/xmonad/xmonad.hs;
+    home.file.".Xmodmap".source = ./config/.Xmodmap;
     
 
 

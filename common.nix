@@ -8,6 +8,7 @@
     ./dev/dotnet.nix
     ./dev/python/python.nix
     ./usr/gorgeous.nix
+    ./keyboard.nix
     (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
   ];
 
@@ -41,6 +42,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    xorg.xmodmap
     xmobar
     dmenu
    	emacs
@@ -78,8 +80,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:ctrl_modifier";
   #services.xserver.xkbOptions = "ctrl:swapcaps";
   
   

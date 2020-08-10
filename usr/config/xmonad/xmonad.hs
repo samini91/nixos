@@ -23,8 +23,8 @@ main :: IO ()
 main =
   xmonad $ def
     {
-      modMask = mod4Mask
-    , borderWidth = 2
-    , focusedBorderColor = "#FFFFFF"
+      modMask = mod3Mask
+    , borderWidth = 4
+    , focusedBorderColor = "#1ECBE1"
       
     }
