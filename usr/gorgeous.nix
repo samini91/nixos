@@ -31,6 +31,7 @@
 
     home.file.".xmonad/xmonad.hs".source = ./config/xmonad/xmonad.hs;
     home.file.".Xmodmap".source = ./config/.Xmodmap;
+    home.file."compton/compton.conf".source = ./config/compton/compton.conf;
     
 
 
