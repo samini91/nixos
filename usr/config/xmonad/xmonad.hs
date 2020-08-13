@@ -16,6 +16,7 @@ import qualified XMonad.Layout.Reflect         as L
 import qualified XMonad.Layout.Spacing         as L
 import qualified XMonad.StackSet               as W
 import qualified XMonad.Util.CustomKeys        as C
+import qualified XMonad.Util.SpawnOnce         as SpawnOnce
 
 
 
@@ -26,5 +27,10 @@ main =
       modMask = mod3Mask
     , borderWidth = 4
     , focusedBorderColor = "#1ECBE1"
-      
+    , startupHook = myStartupHook
     }
+
+myStartupHook =
+  do
+    SpawnOnce.spawnOnce "xmodmap ~/.Xmodmap"
+    
