@@ -32,5 +32,9 @@ main =
 
 myStartupHook =
   do
-    SpawnOnce.spawnOnce "xmodmap ~/.Xmodmap"
+    SpawnOnce.spawnOnce "xmodmap ~/.Xmodmap &"
+    SpawnOnce.spawnOnce "nitrogen --restore &"
+    SpawnOnce.spawnOnce "compton &"
+    SpawnOnce.spawnOnce "emacs --daemon &"
+    
     

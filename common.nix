@@ -42,6 +42,8 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    nitrogen
+    compton
     xorg.xmodmap
     xmobar
     dmenu
