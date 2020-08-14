@@ -2,10 +2,11 @@ clear lock
 clear control
 clear mod1
 clear mod3
+clear mod4
 keycode 108 = Alt_R
 keycode 37 = Control_L
 keycode 105 = Control_R
 keysym Caps_Lock = Control_L
-add mod3 = Alt_R
+add mod4 = Alt_R Super_L
 add mod1 = Alt_L
 add control = Control_L Caps_Lock Control_R

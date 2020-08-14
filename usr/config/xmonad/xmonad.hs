@@ -24,7 +24,7 @@ main :: IO ()
 main =
   xmonad $ def
     {
-      modMask = mod3Mask
+      modMask = mod4Mask
     , borderWidth = 4
     , focusedBorderColor = "#1ECBE1"
     , startupHook = myStartupHook
