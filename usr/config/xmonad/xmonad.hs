@@ -17,7 +17,7 @@ import qualified XMonad.Layout.Spacing         as L
 import qualified XMonad.StackSet               as W
 import qualified XMonad.Util.CustomKeys        as C
 import qualified XMonad.Util.SpawnOnce         as SpawnOnce
-
+import qualified XMonad.Util.Run               as Run
 
 
 main :: IO ()
@@ -32,7 +32,7 @@ main =
 
 myStartupHook =
   do
-    SpawnOnce.spawnOnce "xmodmap ~/.Xmodmap &"
+    spawn "xmodmap ~/.Xmodmap &"
     SpawnOnce.spawnOnce "nitrogen --restore &"
     SpawnOnce.spawnOnce "compton &"
     SpawnOnce.spawnOnce "emacs --daemon &"
