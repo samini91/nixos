@@ -3,8 +3,8 @@
 with pkgs.lib;
 
 {
-  
-  services.xserver.layout = "us";
+  console.useXkbConfig = false;
+  #services.xserver.layout = "us";
   # should move this to xmodmap. xmodmap doesnt work well if it doesnt manage everything
   #services.xserver.xkbOptions = "caps:ctrl_modifier";
 

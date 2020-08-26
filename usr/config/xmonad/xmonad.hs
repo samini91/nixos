@@ -2,6 +2,7 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 
 import           Data.Default                   ( def )
+import qualified Data.Map                      as M
 import           XMonad
 import           XMonad.Hooks.ManageDocks       ( manageDocks )
 import           XMonad.Hooks.SetWMName         ( setWMName )
@@ -28,6 +29,7 @@ main =
     , borderWidth = 4
     , focusedBorderColor = "#1ECBE1"
     , startupHook = myStartupHook
+    , keys = \c -> mykeys c `M.union` keys def c
     }
 
 myStartupHook =
@@ -38,3 +40,5 @@ myStartupHook =
     SpawnOnce.spawnOnce "emacs --daemon &"
     
     
+mykeys (XConfig {modMask = modm}) = M.fromList $
+         [ ((modm , xK_e), spawn "emacsclient -c") ]
