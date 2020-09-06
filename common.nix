@@ -1,5 +1,12 @@
 { config, options, pkgs, ... }:
 
+let
+  # update this hash for newer versions of unstable stuff
+  unstable = import
+    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/d95c93c2ae63caeaa159039ff3136d8af7adcffd)
+    # reuse the current configuration
+    { config = config.nixpkgs.config; };
+in
 {
   # use absolute path here?
   imports = [
@@ -47,7 +54,7 @@
     xorg.xmodmap
     xmobar
     dmenu
-   	emacs
+    unstable.emacs
 		git
 		firefox
     ripgrep
