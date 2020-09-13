@@ -68,6 +68,7 @@ in
     gcc
     postgresql
     zlib
+    pavucontrol
 	];
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
