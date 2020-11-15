@@ -3,9 +3,14 @@
 let
   # update this hash for newer versions of unstable stuff
   unstable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/d95c93c2ae63caeaa159039ff3136d8af7adcffd)
+    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/a52e974cff8fb80c427e0d55c01b3b8c770ccec4)
     # reuse the current configuration
     { config = config.nixpkgs.config; };
+
+  home-manager = builtins.fetchGit {
+    url = "https://github.com/rycee/home-manager.git";
+    rev = "b819d2cc414e0d14fd078551399f58c087a72ae7";
+  };
 in
 {
   # use absolute path here?
@@ -13,10 +18,12 @@ in
     ./dev/emacs.nix
     ./dev/haskell.nix
     ./dev/dotnet.nix
+    ./dev/java.nix
     ./dev/python/python.nix
     ./usr/gorgeous.nix
     ./keyboard.nix
-    (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
+    (import "${home-manager}/nixos")
+    #(import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
   ];
 
   nix.nixPath =
@@ -67,8 +74,14 @@ in
     keepassxc
     gcc
     postgresql
-    zlib
     pavucontrol
+    gparted
+    apacheKafka
+    zookeeper
+    zookeeper_mt
+    exhibitor
+    zk-shell
+    wireshark
 	];
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
@@ -91,6 +104,10 @@ in
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   #services.xserver.xkbOptions = "ctrl:swapcaps";
+
+  # Postgres
+  services.postgresql.enable = true;
+  services.postgresql.package = pkgs.postgresql_11;
   
   
   # Enable the KDE Desktop Environment.
