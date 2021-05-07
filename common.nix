@@ -18,8 +18,11 @@ in
     ./dev/emacs.nix
     ./dev/haskell.nix
     ./dev/dotnet.nix
-    ./dev/java.nix
     ./dev/python/python.nix
+    ./dev/javascript/typescript.nix
+    ./dev/go/go.nix
+    ./dev/java/java.nix
+    ./dev/scala/scala.nix
     ./usr/gorgeous.nix
     ./keyboard.nix
     (import "${home-manager}/nixos")
@@ -82,6 +85,8 @@ in
     exhibitor
     zk-shell
     wireshark
+    vscode
+    unzip
 	];
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
