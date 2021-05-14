@@ -1,4 +1,4 @@
-{ pkgs,
+{ pkgs ? import <nixpkgs> {},
 #, stdenv
 #, fetchurl
 #, mono5
