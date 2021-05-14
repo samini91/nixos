@@ -1,11 +1,11 @@
-{ config, options, pkgs, ... }:
+{ options, pkgs, ... }:
 
 let
   # update this hash for newer versions of unstable stuff
   unstable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/a52e974cff8fb80c427e0d55c01b3b8c770ccec4)
+    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/a52e974cff8fb80c427e0d55c01b3b8c770ccec4){};
     # reuse the current configuration
-    { config = config.nixpkgs.config; };
+    #{ config = config.nixpkgs.config; };
 
   home-manager = builtins.fetchGit {
     url = "https://github.com/rycee/home-manager.git";
