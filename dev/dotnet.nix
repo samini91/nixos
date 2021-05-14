@@ -11,7 +11,7 @@
     dotnetCorePackages.aspnetcore_3_1
     mono6
     (omnisharp-roslyn.overrideAttrs (oldAttrs: {
-      version = "1.35.1";
+      version = "1.37.3";
     }))
 
     ];
