@@ -1,7 +1,5 @@
-{ pkgs, ... }:
+{ pkgs ? import <nixpkgs> {}, ... }:
+with pkgs; [
+  jdk11
+]
 
-{
-  environment.systemPackages = with pkgs; [
-    jdk11
-  ];
-}

@@ -1,7 +1,6 @@
 { pkgs ? import <nixpkgs> {} , ... }:
 
-with pkgs; with nodePackages;
-  [
+with pkgs; with nodePackages; [
     nodejs
     npm
   ]

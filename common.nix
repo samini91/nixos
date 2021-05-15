@@ -16,14 +16,7 @@ let
 in
 {
   # use absolute path here?
-  imports = [    
-    ./dev/haskell.nix
-    ./dev/dotnet.nix
-    ./dev/python/python.nix
- 
-    ./dev/go/go.nix
-    ./dev/java/java.nix
-    ./dev/scala/scala.nix
+  imports = [                   
     ./usr/gorgeous.nix
     ./keyboard.nix
     (import "${home-manager}/nixos")
@@ -68,31 +61,26 @@ in
     xorg.xmodmap
     xmobar
     dmenu
-		git
 		firefox
-    ripgrep
-    gnumake
-    sshfs
-    wget
     alacritty
     ncmpcpp
     mpd
     keepassxc
     gcc
-    postgresql
     pavucontrol
-    gparted
-    apacheKafka
-    zookeeper
-    zookeeper_mt
-    exhibitor
+    gparted   
     zk-shell
-    wireshark
-    vscode
-    unzip    
 	]
   ++ import ./dev/javascript/typescript.nix { }
-  ++ import ./dev/emacs.nix { };
+  ++ import ./dev/emacs.nix { }
+  ++ import ./dev/dotnet.nix { }
+  ++ import ./dev/go/go.nix { }
+  ++ import ./dev/haskell.nix { }
+  ++ import ./dev/python/python.nix { }
+  ++ import ./dev/java/java.nix { }
+  ++ import ./dev/scala/scala.nix { }
+  ++ import ./dev/devtools/devtools.nix { }
+  ++ import ./dev/database/postgres.nix {} ;
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
 

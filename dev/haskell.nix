@@ -1,7 +1,6 @@
-{ pkgs, ... }:
+{ pkgs ? import <nixpkgs> {}, ... }:
 
-{
-  environment.systemPackages = with pkgs; with haskellPackages; [
+  with pkgs; with haskellPackages; [
     ghc
     ghcid
     stack
@@ -10,5 +9,5 @@
     implicit-hie
     ##haskell-language-server
     haskell.packages.ghc883.haskell-language-server ## this for somereason takes forever
-  ];
-}
+  ]
+
