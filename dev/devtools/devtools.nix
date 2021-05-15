@@ -13,4 +13,5 @@ with pkgs; [
   wireshark
   #exhibitor
   unzip
+  dbeaver
 ]
