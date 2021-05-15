@@ -11,6 +11,8 @@ let
     url = "https://github.com/rycee/home-manager.git";
     rev = "b819d2cc414e0d14fd078551399f58c087a72ae7";
   };
+
+  listFuncs = pkgs.lib.lists;
 in
 {
   # use absolute path here?
@@ -19,7 +21,7 @@ in
     ./dev/haskell.nix
     ./dev/dotnet.nix
     ./dev/python/python.nix
-    ./dev/javascript/typescript.nix
+ 
     ./dev/go/go.nix
     ./dev/java/java.nix
     ./dev/scala/scala.nix
@@ -28,6 +30,8 @@ in
     (import "${home-manager}/nixos")
     #(import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
   ];
+
+  #environment.systemPackages =
 
   nix.nixPath =
     # Prepend default nixPath values.
@@ -58,6 +62,7 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  # listFunc.flatten doesnt work when importing a list for some reason
   environment.systemPackages = with pkgs; [
     nitrogen
     compton
@@ -86,8 +91,8 @@ in
     zk-shell
     wireshark
     vscode
-    unzip
-	];
+    unzip    
+	] ++ import ./dev/javascript/typescript.nix { };
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
 

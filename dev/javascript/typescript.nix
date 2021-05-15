@@ -1,7 +1,12 @@
 { pkgs ? import <nixpkgs> {} , ... }:
-{
-  environment.systemPackages = with pkgs; with nodePackages; [
+
+with pkgs; with nodePackages;
+  [
     nodejs
     npm
-  ];
-}
+  ]
+  #stuff = with pkgs; with nodePackages; [
+  #  nodejs
+  #  npm
+  #];
+
