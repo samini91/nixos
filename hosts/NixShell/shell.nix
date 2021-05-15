@@ -1,4 +1,5 @@
-{ pkgs ? import <nixpkgs> {} , ... }:
+{ pkgs ? import <nixpkgs> { config.allowUnfree = true; } , ... }:
+
 
   pkgs.mkShell {
     buildInputs = with pkgs; [      
@@ -6,6 +7,8 @@
       htop
       zlib
       firefox
+      vscode
     ] ++ import ../../dev/emacs.nix { };
   }
+
 
