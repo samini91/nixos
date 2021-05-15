@@ -2,8 +2,8 @@
 
 let
   # update this hash for newer versions of unstable stuff
-  unstable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/a52e974cff8fb80c427e0d55c01b3b8c770ccec4){};
+#  unstable = import
+#    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/a52e974cff8fb80c427e0d55c01b3b8c770ccec4){};
     # reuse the current configuration
     #{ config = config.nixpkgs.config; };
 
@@ -16,8 +16,7 @@ let
 in
 {
   # use absolute path here?
-  imports = [
-    ./dev/emacs.nix
+  imports = [    
     ./dev/haskell.nix
     ./dev/dotnet.nix
     ./dev/python/python.nix
@@ -69,7 +68,6 @@ in
     xorg.xmodmap
     xmobar
     dmenu
-    unstable.emacs
 		git
 		firefox
     ripgrep
@@ -92,7 +90,9 @@ in
     wireshark
     vscode
     unzip    
-	] ++ import ./dev/javascript/typescript.nix { };
+	]
+  ++ import ./dev/javascript/typescript.nix { }
+  ++ import ./dev/emacs.nix { };
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
 
