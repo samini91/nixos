@@ -24,6 +24,7 @@ in
   ];
 
   #environment.systemPackages =
+  virtualisation.docker.enable = true;
 
   nix.nixPath =
     # Prepend default nixPath values.
@@ -104,8 +105,11 @@ in
   #services.xserver.xkbOptions = "ctrl:swapcaps";
 
   # Postgres
-  services.postgresql.enable = true;
-  services.postgresql.package = pkgs.postgresql_11;
+ # services.postgresql.enable = true;
+ # services.postgresql.package = pkgs.postgresql_11;
+
+ # services.zookeeper.enable = true;
+ # services.apache-kafka.enable = true;
   
   
   # Enable the KDE Desktop Environment.
