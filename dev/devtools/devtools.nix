@@ -14,4 +14,10 @@ with pkgs; [
   #exhibitor
   unzip
   dbeaver
+  docker
+  google-cloud-sdk
+  kubectl
+  kubernetes-helm
+  minikube
+  mongodb-compass
 ]
