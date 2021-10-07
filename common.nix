@@ -77,6 +77,7 @@ in
   ++ import ./dev/dotnet.nix { }
   ++ import ./dev/go/go.nix { }
   ++ import ./dev/haskell.nix { }
+  ++ import ./dev/rust.nix { }
   ++ import ./dev/python/python.nix { }
   ++ import ./dev/java/java.nix { }
   ++ import ./dev/scala/scala.nix { }
