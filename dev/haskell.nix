@@ -15,5 +15,9 @@ in
     ##haskell-language-server
     #haskell883.haskell.packages.ghc883.haskell-language-server ## this for somereason takes forever
     haskell-language-server
+
+    # not sure if i need this for cardano...  in theory the shell file should have everything needed
+    #Cabal_3_4_0_0
+    #cabal-install
   ]
 

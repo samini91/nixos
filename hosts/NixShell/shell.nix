@@ -9,6 +9,7 @@
     ++ import ../../dev/dotnet.nix { }
     ++ import ../../dev/go/go.nix { }
     ++ import ../../dev/java/java.nix { }
+    ++ import ../../dev/nix.nix { }  
     ++ import ../../dev/haskell.nix { }
     ++ import ../../dev/rust.nix { }
     ++ import ../../dev/javascript/typescript.nix { }
