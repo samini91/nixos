@@ -73,6 +73,7 @@ in
     zk-shell
     zlib
     zlib.dev
+    p7zip
 	]
   ++ import ./dev/javascript/typescript.nix { }
   ++ import ./dev/emacs.nix { }
@@ -85,7 +86,8 @@ in
   ++ import ./dev/nix.nix { }
   ++ import ./dev/scala/scala.nix { }
   ++ import ./dev/devtools/devtools.nix { }
-  ++ import ./dev/database/postgres.nix {} ;
+  ++ import ./dev/database/postgres.nix {} 
+  ++ import ./dev/octave.nix {} ;
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
 
