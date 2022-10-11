@@ -74,6 +74,7 @@ in
     zlib
     zlib.dev
     p7zip
+    vlc
 	]
   ++ import ./dev/javascript/typescript.nix { }
   ++ import ./dev/emacs.nix { }
