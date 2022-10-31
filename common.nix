@@ -75,6 +75,7 @@ in
     zlib.dev
     p7zip
     vlc
+    arandr
 	]
   ++ import ./dev/javascript/typescript.nix { }
   ++ import ./dev/emacs.nix { }
@@ -112,8 +113,8 @@ in
   #services.xserver.xkbOptions = "ctrl:swapcaps";
 
   # Postgres
- # services.postgresql.enable = true;
- # services.postgresql.package = pkgs.postgresql_11;
+  # services.postgresql.enable = true;
+  # services.postgresql.package = pkgs.postgresql_11;
 
  # services.zookeeper.enable = true;
  # services.apache-kafka.enable = true;

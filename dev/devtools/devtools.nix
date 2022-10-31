@@ -20,4 +20,7 @@ with pkgs; [
   kubernetes-helm
   minikube
   mongodb-compass
+  cmake
+  libtool
+  libvterm
 ]

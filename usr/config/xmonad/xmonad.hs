@@ -27,7 +27,7 @@ main =
     {
       modMask = mod4Mask
     , borderWidth = 4
-    , focusedBorderColor = "#1ECBE1"
+    , focusedBorderColor = "#000000"
     , startupHook = myStartupHook
     , keys = \c -> mykeys c `M.union` keys def c
     }
