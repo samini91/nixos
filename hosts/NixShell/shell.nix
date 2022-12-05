@@ -5,7 +5,7 @@
     buildInputs = with pkgs; [      
 
     ]
-    ++ import ../../dev/emacs.nix { }
+    ++ import ../../dev/emacs.nix pkgs
     ++ import ../../dev/dotnet.nix { }
     ++ import ../../dev/go/go.nix { }
     ++ import ../../dev/java/java.nix { }

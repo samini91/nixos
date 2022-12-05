@@ -1,4 +1,4 @@
-{ options, pkgs, ... }:
+{ config, options, pkgs, ... }:
 
 let
   # update this hash for newer versions of unstable stuff
@@ -7,30 +7,29 @@ let
     # reuse the current configuration
     #{ config = config.nixpkgs.config; };
 
-  home-manager = builtins.fetchGit {
-    url = "https://github.com/rycee/home-manager.git";
-    rev = "b819d2cc414e0d14fd078551399f58c087a72ae7";
-  };
+  # home-manager = builtins.fetchGit {
+  #   url = "https://github.com/rycee/home-manager.git";
+  #   rev = "b819d2cc414e0d14fd078551399f58c087a72ae7";
+  # };
 
   listFuncs = pkgs.lib.lists;
 in
 {
-  # use absolute path here?
   imports = [                   
     ./usr/gorgeous.nix
     ./keyboard.nix
-    (import "${home-manager}/nixos")
+    # (import "${home-manager}/nixos")
     #(import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
   ];
 
   #environment.systemPackages =
-  virtualisation.docker.enable = true;
+  config.virtualisation.docker.enable = true;
 
-  nix.nixPath =
-    # Prepend default nixPath values.
-    options.nix.nixPath.default ++ 
-    # Append our nixpkgs-overlays.
-    [ "nixpkgs-overlays=/etc/nixos/overlays/" ];
+  # nix.nixPath =
+  #   # Prepend default nixPath values.
+  #   options.nix.nixPath.default ++ 
+  #   # Append our nixpkgs-overlays.
+  #   [ "nixpkgs-overlays=/etc/nixos/overlays/" ];
 
 
   # networking.hostName = "nixos"; # Define your hostname.
@@ -53,10 +52,12 @@ in
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
 
-  nixpkgs.config.allowUnfree = true;
+  config.nixpkgs.config.allowUnfree = true;
+
+  # modules.dev.haskell.enable = true;
 
   # listFunc.flatten doesnt work when importing a list for some reason
-  environment.systemPackages = with pkgs; [
+  config.environment.systemPackages = with pkgs; [
     nitrogen
     compton
     xorg.xmodmap
@@ -76,27 +77,36 @@ in
     p7zip
     vlc
     arandr
-	]
-  ++ import ./dev/javascript/typescript.nix { }
-  ++ import ./dev/emacs.nix { }
-  ++ import ./dev/dotnet.nix { }
-  ++ import ./dev/go/go.nix { }
-  ++ import ./dev/haskell.nix { }
-  ++ import ./dev/rust.nix { }
-  ++ import ./dev/python/python.nix { }
-  ++ import ./dev/java/java.nix { }
-  ++ import ./dev/nix.nix { }
-  ++ import ./dev/scala/scala.nix { }
-  ++ import ./dev/devtools/devtools.nix { }
-  ++ import ./dev/database/postgres.nix {} 
-  ++ import ./dev/octave.nix {} ;
+    haskellPackages.xmobar
+    emacs
+    ripgrep
+	];
+  # ++ import ./dev/javascript/typescript.nix { }
+  # ++ import ./dev/emacs.nix { };
+  # ++ import ./dev/dotnet.nix { }
+  # ++ import ./dev/go/go.nix { }
 
-  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
+  # ++ import ./dev/haskell.nix { inherit pkgs; inherit config; inherit options; }
+  # ++ import ./dev/rust.nix { inherit pkgs;};
+
+  # ++ import ./dev/python/python.nix { }
+  # ++ import ./dev/java/java.nix { }
+  # ++ import ./dev/nix.nix { }
+  # ++ import ./dev/scala/scala.nix { }
+  # ++ import ./dev/devtools/devtools.nix { }
+  # ++ import ./dev/database/postgres.nix {} 
+  # ++ import ./dev/octave.nix {} ;
+
+
+  config.nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  config.services.openssh.enable = true;
+  # options.modules.dev.haskell.enable = true;
+  config.modules.dev.haskell.enable = true;
+  config.modules.dev.nix.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -105,11 +115,11 @@ in
   # networking.firewall.enable = false;
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  config.sound.enable = true;
+  config.hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  config.services.xserver.enable = true;
   #services.xserver.xkbOptions = "ctrl:swapcaps";
 
   # Postgres
@@ -122,13 +132,39 @@ in
   
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
-  services.xserver =
+  config.services.xserver =
     {
       #desktopManager.plasma5.enable = true;
       windowManager.xmonad.enable = true;
       windowManager.xmonad.enableContribAndExtras = true;
+      windowManager.xmonad.extraPackages = haskellPackages: [
+        haskellPackages.xmonad-contrib
+        haskellPackages.xmobar
+        haskellPackages.monad-logger
+        # haskellPackages.xmonad-screenshot
+        haskellPackages.dbus
+        haskellPackages.List
+        haskellPackages.xmonad
+      ];
       
-      displayManager.sddm.enable = true;
+      # displayManager.sddm.enable = true;
+      displayManager.lightdm.enable = true;
     };
+
+
+  
+  # services.picom = {
+  #   enable = true;
+  #   activeOpacity = 0.96;
+  #   inactiveOpacity = 0.75;
+  #   settings = {
+  #     blur-background = true;
+  #     blur-background-frame = true;
+  #     blur-background-fixed = true;
+  #     blur-kern = "7x7box";
+  #     blur-strength = 340;
+  #   };
+  # };
+
 }
 

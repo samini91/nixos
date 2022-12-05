@@ -32,7 +32,7 @@
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       ubuntu_font_family
-      dejavu_fonts
+
       fira-code
       fira-code-symbols
       symbola

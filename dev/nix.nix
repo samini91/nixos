@@ -1,5 +1,14 @@
-{ pkgs ? import <nixpkgs> {}, ... }:
+{ config, options, pkgs, lib, ... }:
 
-with pkgs; [
-  rnix-lsp
-]
+with lib;
+let devCfg = config.modules.dev;
+    cfg = devCfg.nix;
+in
+{
+  options.modules.dev.nix.enable = mkEnableOption "Nix";
+
+  config.environment.systemPackages = mkIf cfg.enable (with pkgs;[
+    rnix-lsp
+  ]);
+}
+

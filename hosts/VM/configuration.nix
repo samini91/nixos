@@ -2,7 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, options, pkgs, specialArgs,... }:
+# {  pkgs, ... }:
 
 {
   imports =
@@ -10,6 +11,10 @@
       ./hardware-configuration.nix
 	    ../../common.nix
     ];
+
+  nixpkgs.overlays = [ (import specialArgs.inputs.rust-overlay) ];
+  #nixpkgs.overlays = overlays;
+  
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -62,8 +67,10 @@
   programs.ssh.startAgent = true;
 
   nix = {
-    binaryCaches          = [ "https://hydra.iohk.io" "https://iohk.cachix.org" ];
-    binaryCachePublicKeys = [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo=" ];
+    #binaryCaches          = [ "https://hydra.iohk.io" "https://cache.iog.io" ];
+    #binaryCaches          = [ "https://cache.iog.io" ];
+    #binaryCachePublicKeys = [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo=" ];
+    settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
   # Open ports in the firewall.

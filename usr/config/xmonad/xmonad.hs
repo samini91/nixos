@@ -1,7 +1,7 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 
-import           Data.Default                   ( def )
+-- import           Data.Default                   ( def )
 import qualified Data.Map                      as M
 import           XMonad
 import           XMonad.Hooks.ManageDocks       ( manageDocks )

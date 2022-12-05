@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, home-manager, ... }:
 
 {
   #home-manager.users.gorgeous.nixpkgs.config = import ./nixpkgs-config.nix;
@@ -32,8 +32,9 @@
     home.file.".xmonad/xmonad.hs".source = ./config/xmonad/xmonad.hs;
     home.file.".Xmodmap".source = ./config/.Xmodmap;
     home.file.".config/compton/compton.conf".source = ./config/compton/compton.conf;
-    
 
+    home.stateVersion = config.system.stateVersion;
+    # home.stateVersion = "22.05";
 
     #        builtins.fetchGit {
     #          url = "https://github.com/samini91/Emacs-Init.git";
