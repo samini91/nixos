@@ -97,6 +97,13 @@ in
   # ++ import ./dev/database/postgres.nix {} 
   # ++ import ./dev/octave.nix {} ;
 
+  config.systemd.services.foo = {
+    script = ''
+           xmonad --recompile
+  '';
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+  };
 
   config.nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
 
