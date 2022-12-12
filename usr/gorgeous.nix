@@ -1,12 +1,24 @@
 { config, pkgs, home-manager, ... }:
 
 {
+  home-manager.users.sa = {
+
+    home.file.".config/ncmpcpp/config".source = ./config/ncmpcpp/config;
+
+    # reload by modifier-shift-q
+    home.file.".xmonad/xmonad.hs".source = ./config/xmonad/xmonad.hs;
+    home.file.".Xmodmap".source = ./config/.Xmodmap;
+    home.file.".config/compton/compton.conf".source = ./config/compton/compton.conf;
+
+    home.stateVersion = config.system.stateVersion;
+  };
+
   #home-manager.users.gorgeous.nixpkgs.config = import ./nixpkgs-config.nix;
   home-manager.users.gorgeous.nixpkgs.config.allowUnfree = true;
   #dotfiledir =
 
   home-manager.users.gorgeous = {
-    
+
     programs.git = {
       enable = true;
       userName = "samini91";
@@ -28,7 +40,6 @@
     home.file.".config/ncmpcpp/config".source = ./config/ncmpcpp/config;
 
     # reload by modifier-shift-q
-
     home.file.".xmonad/xmonad.hs".source = ./config/xmonad/xmonad.hs;
     home.file.".Xmodmap".source = ./config/.Xmodmap;
     home.file.".config/compton/compton.conf".source = ./config/compton/compton.conf;
@@ -57,14 +68,25 @@
 
   };
 
-  
-  
-
-  
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.gorgeous = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" "docker"];
+    initialHashedPassword = "";
   };
+
+  users.users.sa = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "audio" "docker"];
+    initialHashedPassword = "";
+  };
+
+  users.users.satest = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "audio" "docker"];
+    initialHashedPassword = "";
+  };
+
+
 }

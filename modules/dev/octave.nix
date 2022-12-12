@@ -2,13 +2,16 @@
 with pkgs;
 with lib;
 let devCfg = config.modules.dev;
-    cfg = devCfg.python;
+    cfg = devCfg.octave;
 in
 {
-  options.modules.dev.python.enable = mkEnableOption "Python";  
+  options.modules.dev.octave.enable = mkEnableOption "Octave";  
 
   config.environment.systemPackages = mkIf cfg.enable ([
-    python3
+    octave 
   ]);
 }
+
+
+
 

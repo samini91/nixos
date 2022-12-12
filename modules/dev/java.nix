@@ -2,13 +2,13 @@
 with pkgs;
 with lib;
 let devCfg = config.modules.dev;
-    cfg = devCfg.python;
+    cfg = devCfg.java;
 in
 {
-  options.modules.dev.python.enable = mkEnableOption "Python";  
+  options.modules.dev.java.enable = mkEnableOption "Java";  
 
   config.environment.systemPackages = mkIf cfg.enable ([
-    python3
+    jdk11
+    gradle
   ]);
 }
-

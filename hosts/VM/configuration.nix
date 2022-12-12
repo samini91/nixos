@@ -10,6 +10,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 	    ../../common.nix
+      ./modules.nix
     ];
 
   nixpkgs.overlays = [ (import specialArgs.inputs.rust-overlay) ];
@@ -108,6 +109,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.05"; # Did you read the comment?
+
 
 }
 

@@ -1,3 +1,4 @@
+# System level configs that I would want on every machine
 { config, options, pkgs, ... }:
 
 let
@@ -67,6 +68,8 @@ in
     alacritty
     ncmpcpp
     mpd
+    # ncmpcpp
+    # mpd
     keepassxc
     gcc
     pavucontrol
@@ -80,6 +83,18 @@ in
     haskellPackages.xmobar
     emacs
     ripgrep
+
+    git
+    ripgrep
+    gnumake
+    sshfs
+    wget
+    wireshark
+    unzip
+    cmake
+    libtool
+    libvterm
+    
 	];
   # ++ import ./dev/javascript/typescript.nix { }
   # ++ import ./dev/emacs.nix { };
@@ -97,23 +112,12 @@ in
   # ++ import ./dev/database/postgres.nix {} 
   # ++ import ./dev/octave.nix {} ;
 
-  config.systemd.services.foo = {
-    script = ''
-           xmonad --recompile
-  '';
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-  };
-
   config.nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   config.services.openssh.enable = true;
-  # options.modules.dev.haskell.enable = true;
-  config.modules.dev.haskell.enable = true;
-  config.modules.dev.nix.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -141,7 +145,8 @@ in
   # services.xserver.displayManager.sddm.enable = true;
   config.services.xserver =
     {
-      #desktopManager.plasma5.enable = true;
+      # displayManager.gdm.enable = true;
+      # desktopManager.plasma5.enable = true;
       windowManager.xmonad.enable = true;
       windowManager.xmonad.enableContribAndExtras = true;
       windowManager.xmonad.extraPackages = haskellPackages: [

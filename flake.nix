@@ -1,5 +1,5 @@
 {
-  description = "WOOOOOOOOOOOOOOOO";
+  description = "Gorgeous";
 
   inputs = 
     {
@@ -29,7 +29,7 @@
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./dev/default.nix
+            ./modules/dev/default.nix
             home-manager.nixosModules.home-manager
             ./hosts/VM/configuration.nix
           ];

@@ -1,23 +1,15 @@
-# modules/dev --- common settings for dev modules
-
-{ pkgs, ... }:
+{ config, options, pkgs, lib, ... }:
 {
   imports = [
-    ./cc.nix
-    ./clojure.nix
-    ./common-lisp.nix
-    ./godot.nix
-    # ./haskell.nix
-    # ./latex.nix
-    ./lua.nix
-    ./node.nix
-    ./python.nix
+    ./haskell.nix
     ./rust.nix
+    ./dotnet.nix
+    ./nix.nix
+    ./golang.nix
+    ./java.nix
+    ./octave.nix
+    ./python.nix
     ./scala.nix
-    ./unity3d.nix
-    ./zsh.nix
+    ./node.nix
   ];
-
-  options = {};
-  config = {};
 }

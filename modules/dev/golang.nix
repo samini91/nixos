@@ -2,13 +2,15 @@
 with pkgs;
 with lib;
 let devCfg = config.modules.dev;
-    cfg = devCfg.python;
+    cfg = devCfg.golang;
 in
 {
-  options.modules.dev.python.enable = mkEnableOption "Python";  
+  options.modules.dev.golang.enable = mkEnableOption "Golang";  
 
   config.environment.systemPackages = mkIf cfg.enable ([
-    python3
+    go
+    gopls
   ]);
 }
+
 

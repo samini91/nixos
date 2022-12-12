@@ -1,19 +1,15 @@
-
-{ config, options, lib, pkgs, ... }:
+{ config, options, pkgs, lib, ... }:
+with pkgs;
 with lib;
+let devCfg = config.modules.dev;
+    cfg = devCfg.scala;
+in
 {
-  options.modules.dev.scala = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
-  };
+  options.modules.dev.scala.enable = mkEnableOption "Scala";  
 
-  config = mkIf config.modules.dev.scala.enable {
-    my.packages = with pkgs; [
-      scala
-      jdk
-      sbt
-    ];
-  };
+  config.environment.systemPackages = mkIf cfg.enable ([
+    scala
+    sbt    
+  ]);
 }
+
