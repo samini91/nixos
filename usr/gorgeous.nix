@@ -8,6 +8,7 @@
     # reload by modifier-shift-q
     home.file.".xmonad/xmonad.hs".source = ./config/xmonad/xmonad.hs;
     home.file.".Xmodmap".source = ./config/.Xmodmap;
+    home.file.".xmobarrc".source = ./config/.xmobarrc;
     home.file.".config/compton/compton.conf".source = ./config/compton/compton.conf;
 
     home.stateVersion = config.system.stateVersion;
@@ -42,6 +43,7 @@
     # reload by modifier-shift-q
     home.file.".xmonad/xmonad.hs".source = ./config/xmonad/xmonad.hs;
     home.file.".Xmodmap".source = ./config/.Xmodmap;
+    home.file.".xmobarrc".source = ./config/.xmobarrc;
     home.file.".config/compton/compton.conf".source = ./config/compton/compton.conf;
 
     home.stateVersion = config.system.stateVersion;

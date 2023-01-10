@@ -19,18 +19,31 @@ import qualified XMonad.StackSet               as W
 import qualified XMonad.Util.CustomKeys        as C
 import qualified XMonad.Util.SpawnOnce         as SpawnOnce
 import qualified XMonad.Util.Run               as Run
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
+
+import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
+
+import XMonad.Util.EZConfig
+import XMonad.Util.Loggers
+import XMonad.Util.Ungrab
+
+import XMonad.Layout.Magnifier
+
+--import XMonad.Hooks.EwmhDesktops
+-- import XMonad.Util.ClickableWorkspaces
+
 
 
 main :: IO ()
 main =
-  xmonad $ def
-    {
-      modMask = mod4Mask
-    , borderWidth = 4
-    , focusedBorderColor = "#000000"
-    , startupHook = myStartupHook
-    , keys = \c -> mykeys c `M.union` keys def c
-    }
+  xmonad
+--  . withEasySB (statusBarProp "xmobar" (clickablePP myXmobarPP)) defToggleStrutsKey
+  . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
+  $ myConfig
 
 myStartupHook =
   do
@@ -42,3 +55,42 @@ myStartupHook =
     
 mykeys (XConfig {modMask = modm}) = M.fromList $
          [ ((modm , xK_e), spawn "emacsclient -c") ]
+
+myConfig = def
+    {
+      modMask = mod4Mask
+    , borderWidth = 4
+    , focusedBorderColor = "#000000"
+    , startupHook = myStartupHook
+    , keys = \c -> mykeys c `M.union` keys def c
+    }
+
+myXmobarPP :: PP
+myXmobarPP = def
+    { ppSep             = magenta " • "
+    , ppTitleSanitize   = xmobarStrip
+    , ppCurrent         = magenta . wrap "[" "]"
+    , ppHidden          = white . wrap " " ""
+    , ppHiddenNoWindows = lowWhite . wrap " " ""
+    , ppUrgent          = red . wrap (yellow "!") (yellow "!")
+    , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
+    , ppExtras          = [logTitles formatFocused formatUnfocused]
+    , ppTitle           = magenta . shorten 60
+    }
+  where
+    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
+    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
+
+    -- | Windows should have *some* title, which should not not exceed a
+    -- sane length.
+    ppWindow :: String -> String
+    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
+
+    blue, lowWhite, magenta, red, white, yellow :: String -> String
+    magenta  = xmobarColor "#ff79c6" ""
+    blue     = xmobarColor "#bd93f9" ""
+    white    = xmobarColor "#f8f8f2" ""
+    yellow   = xmobarColor "#f1fa8c" ""
+    red      = xmobarColor "#ff5555" ""
+    lowWhite = xmobarColor "#bbbbbb" ""
+

@@ -35,6 +35,21 @@
           ];
           specialArgs = { inherit inputs system; };
         };
+
+        isoImage = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+            ./overlays
+            ./hosts/VM/modules.nix
+            ./modules/dev/default.nix
+            ./common.nix
+            home-manager.nixosModules.home-manager
+            # ./hosts/VM/configuration.nix
+          ];
+          specialArgs = { inherit inputs system; };
+        };
+        
       };
     }
     # For "nix develop"

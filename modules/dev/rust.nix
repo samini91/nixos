@@ -19,6 +19,7 @@ in
 
   config.environment.systemPackages = mkIf cfg.enable (with pkgs; [
     rust-bin.stable.latest.default
+    rust-analyzer
   ]);
 
   # config.environment.systemPackages = with pkgs; [

@@ -94,7 +94,7 @@ in
     cmake
     libtool
     libvterm
-    
+    xdotool
 	];
   # ++ import ./dev/javascript/typescript.nix { }
   # ++ import ./dev/emacs.nix { };
