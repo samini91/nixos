@@ -12,6 +12,7 @@
       python.enable = true;
       scala.enable = true;
       node.enable = true;
+      ruby.enable = true;
     };
   };
 }

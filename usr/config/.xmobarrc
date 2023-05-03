@@ -4,7 +4,7 @@ Config { overrideRedirect = False
                            , "xft:Font Awesome 6 Free Solid:pixelsize=12"
                            , "xft:Font Awesome 6 Brands:pixelsize=12"
                            ]
-        , bgColor      = "#2D2A2E"
+       , bgColor      = "#2D2A2E"
        , fgColor      = "#FCFCFA"
        , position       = TopSize L 100 20
        , lowerOnStart = True
