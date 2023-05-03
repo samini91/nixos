@@ -1,3 +1,4 @@
+# To be Deleted in lieu of nix develop
 { pkgs ? import <nixpkgs> { config.allowUnfree = true; } , ... }:
 
 

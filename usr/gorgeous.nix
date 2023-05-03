@@ -40,8 +40,23 @@
 
     home.file.".config/ncmpcpp/config".source = ./config/ncmpcpp/config;
 
-    # reload by modifier-shift-q
-    home.file.".xmonad/xmonad.hs".source = ./config/xmonad/xmonad.hs;
+    # reload by modifier-q
+    home.file.".xmonad/xmonad.hs" = {
+
+      source = ./config/xmonad/xmonad.hs;
+
+      onChange = ''
+        echo "Recompiling xmonad"
+        $DRY_RUN_CMD xmonad --recompile
+        # Attempt to restart xmonad if X is running.
+        if [[ -v DISPLAY ]] ; then
+          echo "Restarting xmonad"
+          $DRY_RUN_CMD xmonad --restart
+        fi
+      '';
+
+    };
+
     home.file.".Xmodmap".source = ./config/.Xmodmap;
     home.file.".xmobarrc".source = ./config/.xmobarrc;
     home.file.".config/compton/compton.conf".source = ./config/compton/compton.conf;
@@ -66,8 +81,6 @@
     #        };
     #        
     #      };
-
-
   };
 
 

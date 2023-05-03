@@ -31,7 +31,7 @@
           modules = [
             ./modules/dev/default.nix
             home-manager.nixosModules.home-manager
-            ./hosts/VM/configuration.nix
+            ./hosts/vm/configuration.nix
           ];
           specialArgs = { inherit inputs system; };
         };
@@ -41,9 +41,9 @@
           modules = [
             (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
             ./overlays
-            ./hosts/VM/modules.nix
+            ./hosts/vm/modules.nix
             ./modules/dev/default.nix
-            ./common.nix
+            ./hosts/common.nix
             home-manager.nixosModules.home-manager
             # ./hosts/VM/configuration.nix
           ];

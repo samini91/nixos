@@ -1,1 +1,0 @@
-hosts/VM/configuration.nix
