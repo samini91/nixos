@@ -30,9 +30,12 @@ Config { overrideRedirect = False
                     , Run Memory ["-t", "<fn=2>\xf233</fn>  mem: <used>M (<usedratio>%)"] 20
                     , Run Swap [] 10
                     , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
-                    , Run XMonadLog
+                    , Run UnsafeStdinReader
+                    , Run UnsafeXMonadLog
                     --, Run StdinReader
-                    -- , Run UnsafeStdinReader
+                    --, Run XMonadLog
+                    
+
                     -- Echos a "battery" icon in front of the pacman updates.
                     , Run Com "echo" ["<fn=2>\xf242</fn>"] "baticon" 3600
                     -- Battery
@@ -40,6 +43,8 @@ Config { overrideRedirect = False
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }{ %alsa:default:Master% | %cpu% | %memory% * %swap% | %disku% | %baticon%  %battery% | %EGPF% | %date% "
-       -- , template = "%UnsafeStdinReader% }{ %alsa:default:Master% | %cpu% | %memory% * %swap% | %disku% | %baticon%  %battery% | %EGPF% | %date% "
+       --, template = "%StdinReader% }{ %alsa:default:Master% | %cpu% | %memory% * %swap% | %disku% | %baticon%  %battery% | %EGPF% | %date% "
+       --, template = "%XMonadLog% }{ %alsa:default:Master% | %cpu% | %memory% * %swap% | %disku% | %baticon%  %battery% | %EGPF% | %date% "
+       --       , template = "%XMonadLog%"
+        , template = "%UnsafeXMonadLog% }{ %alsa:default:Master% | %cpu% | %memory% * %swap% | %disku% | %baticon%  %battery% | %EGPF% | %date% "
        }

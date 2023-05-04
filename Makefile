@@ -1,8 +1,7 @@
 Deploy: 
 	sudo nixos-rebuild switch
 VM:
-	ln -sf hosts/VM/hardware-configuration.nix hardware-configuration.nix
-	ln -sf hosts/VM/configuration.nix configuration.nix
+	sudo nixos-rebuild switch --flake .#vm
 MiniCompLink:
 	ln -sf hosts/MiniComp/hardware-configuration.nix hardware-configuration.nix
 	ln -sf hosts/MiniComp/configuration.nix configuration.nix

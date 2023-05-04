@@ -5,6 +5,7 @@ let
   listFuncs = pkgs.lib.lists;
 in
 {
+
   imports = [                   
     ../keyboard.nix
   ];
@@ -15,7 +16,8 @@ in
 
   config.environment.systemPackages = with pkgs; [
     nitrogen
-    compton
+    # compton
+    picom
     xorg.xmodmap
     xmobar
     dmenu
@@ -50,7 +52,10 @@ in
     libtool
     libvterm
     xdotool
+    inxi
+    unstable.minikube
 	];
+
 
   config.nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
 
@@ -101,8 +106,11 @@ in
     proggyfonts
     carlito
   ];
-  
-  # services.picom = {
+
+  # config.services.picom = {
+  #   enable = true;
+  # };
+  # config.services.picom = {
   #   enable = true;
   #   activeOpacity = 0.96;
   #   inactiveOpacity = 0.75;

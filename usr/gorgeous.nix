@@ -9,7 +9,7 @@
     home.file.".xmonad/xmonad.hs".source = ./config/xmonad/xmonad.hs;
     home.file.".Xmodmap".source = ./config/.Xmodmap;
     home.file.".xmobarrc".source = ./config/.xmobarrc;
-    home.file.".config/compton/compton.conf".source = ./config/compton/compton.conf;
+    home.file.".config/picom/picom.conf".source = ./config/picom/picom.conf;
 
     home.stateVersion = config.system.stateVersion;
   };
@@ -59,7 +59,7 @@
 
     home.file.".Xmodmap".source = ./config/.Xmodmap;
     home.file.".xmobarrc".source = ./config/.xmobarrc;
-    home.file.".config/compton/compton.conf".source = ./config/compton/compton.conf;
+    home.file.".config/picom/picom.conf".source = ./config/picom/picom.conf;
 
     home.stateVersion = config.system.stateVersion;
     # home.stateVersion = "22.05";

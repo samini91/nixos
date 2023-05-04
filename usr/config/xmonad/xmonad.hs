@@ -33,32 +33,38 @@ import XMonad.Util.Ungrab
 
 import XMonad.Layout.Magnifier
 
---import XMonad.Hooks.EwmhDesktops
--- import XMonad.Util.ClickableWorkspaces
-
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Util.ClickableWorkspaces
 
 
 main :: IO ()
 main =
   xmonad
---  . withEasySB (statusBarProp "xmobar" (clickablePP myXmobarPP)) defToggleStrutsKey
-  . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
+   . withEasySB (statusBarProp "xmobar" (clickablePP myXmobarPP)) defToggleStrutsKey
+  -- . withEasySB (statusBarProp "xmobar" (clickableWrap myXmobarPP)) defToggleStrutsKey
+--  . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
   $ myConfig
 
 myStartupHook =
   do
     spawn "xmodmap ~/.Xmodmap &"
     SpawnOnce.spawnOnce "nitrogen --restore &"
-    SpawnOnce.spawnOnce "compton &"
+    SpawnOnce.spawnOnce "picom &"
     SpawnOnce.spawnOnce "emacs --daemon &"
     
     
 mykeys (XConfig {modMask = modm}) = M.fromList $
          [ ((modm , xK_e), spawn "emacsclient -c") ]
 
+temp = [
+  "<action=xdotool key alt+" ++ "1" ++ ">" ++ "a" ++ "</action>",
+  "<action=xdotool key alt+" ++ "2" ++ ">" ++ "b" ++ "</action>"
+       ]
+
 myConfig = def
     {
       modMask = mod4Mask
+--    , workspaces = temp
     , borderWidth = 4
     , focusedBorderColor = "#000000"
     , startupHook = myStartupHook
