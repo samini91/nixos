@@ -9,6 +9,10 @@
       nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";             # primary nixpkgs
       nixpkgs-unstable.url = "nixpkgs/nixos-unstable"; # Unstable nixpkgs
       flake-utils.url = "github:numtide/flake-utils";
+      nixos-generators = {
+        url = "github:nix-community/nixos-generators";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
       
       # home-manager.url = "github:rycee/home-manager/release-22.05";
       home-manager.url = "github:rycee/home-manager/master";
@@ -22,7 +26,7 @@
       # nixos-hardware.url = "github:nixos/nixos-hardware";
     };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, rust-overlay, flake-utils ,... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, rust-overlay, nixos-generators, flake-utils ,... }:
     let
       overlay-unstable = final: prev: {
         unstable = nixpkgs-unstable.legacyPackages.${prev.system};
@@ -38,6 +42,44 @@
         system = "x86_64-linux";
         overlays = [rust-overlay];
 
+        packages.x86_64-linux = {
+          install-iso = nixos-generators.nixosGenerate {
+            inherit system;
+            modules = [
+              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+              ./modules/dev/default.nix
+              home-manager.nixosModules.home-manager
+              ./hosts/common.nix
+              ./modules/dev/default.nix
+              ./usr/gorgeous.nix
+            ];
+            specialArgs = { inherit inputs system; };
+            format = "install-iso";
+            
+            # you can also define your own custom formats
+            # customFormats = { "myFormat" = <myFormatModule>; ... };
+            # format = "myFormat";
+          };
+
+          virtualbox = nixos-generators.nixosGenerate {
+            inherit system;
+            modules = [
+              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+              ./modules/dev/default.nix
+              home-manager.nixosModules.home-manager
+              ./hosts/common.nix
+              ./modules/dev/default.nix
+              ./usr/gorgeous.nix
+            ];
+            specialArgs = { inherit inputs system; };
+            format = "virtualbox";
+            
+            # you can also define your own custom formats
+            # customFormats = { "myFormat" = <myFormatModule>; ... };
+            # format = "myFormat";
+          };
+        };
+
         nixosConfigurations = {
           vm = nixpkgs.lib.nixosSystem {
             inherit system;
@@ -51,22 +93,6 @@
             # specialArgs = inputs;
             # specialArgs.channels = { inherit nixpkgs unstable; };
           };
-
-          isoImage = nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [
-              (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-              ./overlays
-              ./hosts/vm/modules.nix
-              ./modules/dev/default.nix
-              ./hosts/common.nix
-              home-manager.nixosModules.home-manager
-              # ./hosts/VM/configuration.nix
-            ];
-            specialArgs = { inherit inputs; inherit system;};
-            # specialArgs.channels = { inherit unstable; };
-          };
-          
         };
       }
       # For "nix develop"

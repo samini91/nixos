@@ -54,6 +54,7 @@ in
     xdotool
     inxi
     unstable.minikube
+    nixos-generators
 	];
 
 
