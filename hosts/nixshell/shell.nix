@@ -13,7 +13,7 @@ pkgs.mkShell {
     wget
     cmake
     libtool
-    libvterm
+    # libvterm
     minikube
   ] ;
 }
