@@ -99,7 +99,7 @@
       // flake-utils.lib.eachDefaultSystem 
         (system:
           {
-            devShells.default = import ./shell.nix { pkgs = nixpkgs.legacyPackages.${system}; };
+            devShells.default = import ./hosts/nixshell/shell.nix { pkgs = nixpkgs.legacyPackages.${system}; };
           }
         );
 }
