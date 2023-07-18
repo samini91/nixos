@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {}, ... }:
+{ pkgs, ... }:
 
 let
   # update this hash for newer versions of unstable stuff

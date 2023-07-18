@@ -3,7 +3,6 @@
 {
   config.modules = {
     dev = {
-      devtools.enable = true;
       haskell.enable = true;
       rust.enable = true;
       nix.enable = true;

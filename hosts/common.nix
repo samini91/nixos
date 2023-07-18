@@ -55,9 +55,13 @@ in
     inxi
     unstable.minikube
     nixos-generators
+    trayer
+    # pkg-config
+    # openssl
+    # openssl.dev
 	];
 
-
+  
   config.nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;  
 
   # List services that you want to enable:

@@ -54,6 +54,7 @@
               ./usr/gorgeous.nix
             ];
             specialArgs = { inherit inputs system; };
+            # specialArgs = { inherit inputs system; };
             format = "install-iso";
             
             # you can also define your own custom formats
@@ -72,7 +73,25 @@
               ./usr/gorgeous.nix
             ];
             specialArgs = { inherit inputs system; };
-            format = "virtualbox";
+            format = "qcow";
+            
+            # you can also define your own custom formats
+            # customFormats = { "myFormat" = <myFormatModule>; ... };
+            # format = "myFormat";
+          };
+
+          virtualboxM1 = nixos-generators.nixosGenerate {
+            system = "aarch64-linux";
+            modules = [
+              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+              ./modules/dev/default.nix
+              home-manager.nixosModules.home-manager
+              ./hosts/common.nix
+              ./modules/dev/default.nix
+              ./usr/gorgeous.nix
+            ];
+            specialArgs = { inherit inputs system; };
+            format = "qcow";
             
             # you can also define your own custom formats
             # customFormats = { "myFormat" = <myFormatModule>; ... };
@@ -89,6 +108,7 @@
               home-manager.nixosModules.home-manager
               ./hosts/vm/configuration.nix
             ];
+            # This maps to specialargs see vm/configuration.nix
             specialArgs = { inherit inputs system; };
             # specialArgs = inputs;
             # specialArgs.channels = { inherit nixpkgs unstable; };

@@ -1,6 +1,7 @@
 { config, options, pkgs, lib, ... }:
 {
   imports = [
+    ./devtools.nix
     ./haskell.nix
     ./rust.nix
     ./dotnet.nix

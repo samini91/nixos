@@ -1,4 +1,4 @@
-{ system, config, options, pkgs, lib, rust-overlay ,... }:
+{ system, config, options, pkgs, lib, specialArgs, inputs, rust-overlay ,... }:
 with lib;
 let
   #rustPkgs = pkgs { overlays = [ rust-overlay  ]; };
@@ -11,6 +11,9 @@ let
   #rustPkgs = import pkgs {
   #  inherit system overlays;
   #};
+  # rustlatest = pkgs.rust-bin.stable.latest.default.override {
+  #   extensions = [ "rust-src" ];
+  # };
     devCfg = config.modules.dev;
     cfg = devCfg.rust;
 in
@@ -18,8 +21,17 @@ in
   options.modules.dev.rust.enable = mkEnableOption "Rust";
 
   config.environment.systemPackages = mkIf cfg.enable (with pkgs; [
+    # rustlatest
+    # rust-analyzer-unwrapped
     rust-bin.stable.latest.default
     rust-analyzer
+    libiconv
+    openssl
+    openssl.dev
+    # problem is that installing this globally will not allow it to find openssl
+    # If I open a shell it works tho... 
+    pkg-config
+
   ]);
 
   # config.environment.systemPackages = with pkgs; [

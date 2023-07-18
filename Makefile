@@ -1,5 +1,7 @@
 Deploy: 
 	sudo nixos-rebuild switch
+CreateVM:
+	nix build .#virtualbox
 VM:
 	sudo nixos-rebuild switch --flake .#vm
 MiniCompLink:
