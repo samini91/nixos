@@ -15,6 +15,9 @@ pkgs.mkShell {
     libtool
     # libvterm
     minikube
+
+    python311
+    nodePackages_latest.pyright
   ] ;
 }
 
