@@ -1,0 +1,16 @@
+* NixWrap
+CreateVEnv:
+	python -m venv ./venv
+StartVEnv:
+	source "./venv/bin/activate" &&\
+	pip install -r requirements.txt
+Run:
+	source "./venv/bin/activate" &&\
+	pip install -r requirements.txt &&\
+	python main.py
+* pyright config 
+https://github.com/microsoft/pyright/blob/main/docs/configuration.md#sample-config-file
+** Minimal Sample
+{
+  "venv": "venv"
+}
