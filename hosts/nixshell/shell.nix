@@ -5,7 +5,7 @@ pkgs.mkShell {
     
   ] ;
   packages = with pkgs; [      
-    emacs
+    emacs29
     ripgrep
     git
     gnumake
