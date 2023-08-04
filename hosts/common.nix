@@ -38,7 +38,7 @@ in
     vlc
     arandr
     haskellPackages.xmobar
-    emacs
+    emacs29
     ripgrep
 
     git

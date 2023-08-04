@@ -6,7 +6,9 @@
       # Core dependencies.
       # nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";             # primary nixpkgs
       #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-      nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";             # primary nixpkgs
+      # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";             # primary nixpkgs
+      # 
+      nixpkgs = { url = "github:NixOS/nixpkgs?rev=033018e8808875c36d722311c9cd8ff6d20d1a06"; };
       nixpkgs-unstable.url = "nixpkgs/nixos-unstable"; # Unstable nixpkgs
       flake-utils.url = "github:numtide/flake-utils";
       nixos-generators = {
@@ -14,8 +16,8 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
       
-      # home-manager.url = "github:rycee/home-manager/release-22.05";
-      home-manager.url = "github:rycee/home-manager/master";
+      home-manager.url = "github:rycee/home-manager/release-23.05";
+      # home-manager.url = "github:rycee/home-manager/master";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
       agenix.url = "github:ryantm/agenix";
       agenix.inputs.nixpkgs.follows = "nixpkgs";
