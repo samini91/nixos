@@ -19,7 +19,6 @@
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
   # boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
@@ -66,6 +65,9 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
+
+  #programs.gnome-terminal.enable = true;
+  #services.x2goserver.enable = true;
 
   nix = {
     #binaryCaches          = [ "https://hydra.iohk.io" "https://cache.iog.io" ];

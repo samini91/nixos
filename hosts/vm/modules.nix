@@ -13,6 +13,7 @@
       scala.enable = true;
       node.enable = true;
       ruby.enable = true;
+      devtools.enable = true;
     };
   };
 }

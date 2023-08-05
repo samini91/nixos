@@ -12,5 +12,6 @@
     ./scala.nix
     ./node.nix
     ./ruby.nix
+    ./devtools.nix
   ];
 }
