@@ -10,6 +10,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../common.nix
+    ./modules.nix
     ../../usr/gorgeous.nix
   ];
 
@@ -77,6 +78,13 @@
 
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
+
+  nix = {
+    #binaryCaches          = [ "https://hydra.iohk.io" "https://cache.iog.io" ];
+    #binaryCaches          = [ "https://cache.iog.io" ];
+    #binaryCachePublicKeys = [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo=" ];
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
   
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

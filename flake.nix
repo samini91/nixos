@@ -97,6 +97,8 @@
         };
 
         nixosConfigurations = {
+
+
           vm = nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [
@@ -110,6 +112,22 @@
             # specialArgs = inputs;
             # specialArgs.channels = { inherit nixpkgs unstable; };
           };
+
+          minicomp = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+              ./modules/dev/default.nix
+              home-manager.nixosModules.home-manager
+              ./hosts/minicomp/configuration.nix
+            ];
+            # This maps to specialargs see vm/configuration.nix
+            specialArgs = { inherit inputs system; };
+            # specialArgs = inputs;
+            # specialArgs.channels = { inherit nixpkgs unstable; };
+          };
+
+
         };
       }
       # For "nix develop"
