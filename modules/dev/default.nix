@@ -13,5 +13,6 @@
     ./node.nix
     ./ruby.nix
     ./devtools.nix
+    ./android.nix
   ];
 }

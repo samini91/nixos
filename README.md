@@ -21,3 +21,11 @@ To remove nix packages that are not used
 nix-collect-garbage
 
 
+
+
+
+$ nix-env --list-generations --profile /nix/var/nix/profiles/system
+# pick a couple or one to remove
+$ nix-env --delete-generations --profile /nix/var/nix/profiles/system 163 164
+# or anything older than 5 days
+$ nix-env --delete-generations --profile /nix/var/nix/profiles/system 

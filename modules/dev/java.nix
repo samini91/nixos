@@ -8,7 +8,7 @@ in
   options.modules.dev.java.enable = mkEnableOption "Java";  
 
   config.environment.systemPackages = mkIf cfg.enable ([
-    jdk11
+    jdk17
     gradle
   ]);
 }

@@ -14,6 +14,7 @@
       node.enable = true;
       ruby.enable = true;
       devtools.enable = true;
+      android.enable = true;
     };
   };
 }
