@@ -97,11 +97,33 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    #recommendedTlsSettings = true;
+    # other Nginx options
+    virtualHosts."syncer" =  {
+#      enableACME = true;
+#      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:3000";
+        proxyWebsockets = true; # needed if you need to use WebSocket
+#        extraConfig =
+#          # required when the target is also TLS server with multiple hosts
+#          "proxy_ssl_server_name on;" +
+#          # required when the server wants to use HTTP Authentication
+#          "proxy_pass_header Authorization;"
+#          ;
+      };
+    };
+};
     
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  #networking.firewall.trustedInterfaces = [ "docker0" ];
+  networking.firewall.allowedTCPPorts = [ 3000 80 443 ];
+  networking.firewall.allowedUDPPorts = [ 3000 80 443 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
