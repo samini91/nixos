@@ -3,17 +3,17 @@
 {
   config.modules = {
     dev = {
-      haskell.enable = true;
-      rust.enable = true;
-      nix.enable = true;
-      dotnet.enable = true;
-      java.enable = true;
+      haskell.enable = false;
+      rust.enable = false;
+      nix.enable = false;
+      dotnet.enable = false;
+      java.enable = false;
       octave.enable = false;
-      python.enable = true;
+      python.enable = false;
       scala.enable = false;
-      node.enable = true;
+      node.enable = false;
       ruby.enable = false;
-      devtools.enable = true;
+      devtools.enable = false;
     };
   };
 }
