@@ -107,7 +107,7 @@
 #      enableACME = true;
 #      forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:3000";
+        proxyPass = "http://127.0.0.1:8384";
         proxyWebsockets = true; # needed if you need to use WebSocket
 #        extraConfig =
 #          # required when the target is also TLS server with multiple hosts
@@ -118,12 +118,24 @@
       };
     };
 };
-    
+
+  services = {
+    syncthing = {
+      enable = true;
+      guiAddress="0.0.0.0:8384";
+      user="gorgeous";
+      extraOptions.gui = {
+        user = "gorgeous";
+        password = "asdf";
+      };
+    };
+  };
+
 
   # Open ports in the firewall.
   #networking.firewall.trustedInterfaces = [ "docker0" ];
-  networking.firewall.allowedTCPPorts = [ 3000 80 443 ];
-  networking.firewall.allowedUDPPorts = [ 3000 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 3000 80 443 8384 22000 ];
+  networking.firewall.allowedUDPPorts = [ 3000 80 443 8384 22000 21027];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
