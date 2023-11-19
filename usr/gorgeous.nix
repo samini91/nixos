@@ -87,19 +87,19 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.gorgeous = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" "docker" "vboxsf"];
+    extraGroups = [ "wheel" "networkmanager" "audio" "docker" "vboxsf" "syncthing" "root"];
     initialHashedPassword = "";
   };
 
   users.users.sa = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" "docker" "vboxsf"];
+    extraGroups = [ "wheel" "networkmanager" "audio" "docker" "vboxsf" "syncthing"];
     initialHashedPassword = "";
   };
 
   users.users.satest = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" "docker" "vboxsf"];
+    extraGroups = [ "wheel" "networkmanager" "audio" "docker" "vboxsf" "syncthing"];
     initialHashedPassword = "";
   };
 

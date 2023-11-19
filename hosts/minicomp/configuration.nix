@@ -123,7 +123,8 @@
     syncthing = {
       enable = true;
       guiAddress="0.0.0.0:8384";
-      user="gorgeous";
+      user = "gorgeous";
+      group = "users";
       extraOptions.gui = {
         user = "gorgeous";
         password = "asdf";
@@ -131,11 +132,42 @@
     };
   };
 
+# journalctl -fu ytripper
+# systemctl list-units --type=service
+# systemctl list-timers --all
+  systemd.timers."ytripper" = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "ytripper.service" ];
+    timerConfig = {
+      OnBootSec = "30m";
+      OnUnitActiveSec = "30m";
+      Unit = "ytripper.service";
+    };
+  };
+
+  systemd.services."ytripper" = {
+    script = ''
+    export GOOGLE_CLIENT_ID=964068033680-74ff3781pvbp170kgu7oiboo461uar2j.apps.googleusercontent.com
+    export GOOGLE_CLIENT_SECRET=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
+    export DOWNLOAD_FOLDER=/home/gorgeous/Music
+    export TOKEN_PERSIST_PATH=/home/gorgeous/Desktop/ytmusicripperbin/tokens
+
+    /home/gorgeous/Desktop/ytmusicripperbin/cli
+  '';
+    path = [
+      pkgs.ffmpeg-full
+      pkgs.pkg-config
+    ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "gorgeous";
+    };
+  };
 
   # Open ports in the firewall.
   #networking.firewall.trustedInterfaces = [ "docker0" ];
   networking.firewall.allowedTCPPorts = [ 3000 80 443 8384 22000 ];
-  networking.firewall.allowedUDPPorts = [ 3000 80 443 8384 22000 21027];
+  networking.firewall.allowedUDPPorts = [ 3000 80 443 8384 22000 21027 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
