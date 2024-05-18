@@ -18,6 +18,8 @@ pkgs.mkShell {
 
     python311
     nodePackages_latest.pyright
+    sqls
+    yaml-language-server
   ] ;
 }
 

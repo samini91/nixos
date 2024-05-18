@@ -11,7 +11,8 @@ in
     dotnet-sdk
     dotnet-aspnetcore
     mono
-    omnisharp-roslyn  
+    omnisharp-roslyn
+    netcoredbg
   ]);#
   # dotnetCorePackages.sdk_3_1
   # dotnetCorePackages.netcore_3_1

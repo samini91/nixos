@@ -25,6 +25,8 @@ in
     kubernetes-helm
     minikube
     mongodb-compass
+    sqls
+    yaml-language-server
   ]);
 
 }
