@@ -18,7 +18,7 @@ in
     # wireshark
     # exhibitor
     # unzip
-    dbeaver
+    dbeaver-bin
     docker
     google-cloud-sdk
     kubectl
@@ -27,6 +27,7 @@ in
     mongodb-compass
     sqls
     yaml-language-server
+    mermaid-cli
   ]);
 
 }

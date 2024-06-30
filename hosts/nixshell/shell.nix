@@ -20,6 +20,7 @@ pkgs.mkShell {
     nodePackages_latest.pyright
     sqls
     yaml-language-server
+    mermaid-cli
   ] ;
 }
 
