@@ -8,8 +8,12 @@ in
   options.modules.dev.dotnet.enable = mkEnableOption "DotNet";  
 
   config.environment.systemPackages = mkIf cfg.enable ([
-    dotnet-sdk
-    dotnet-aspnetcore
+    #dotnet-sdk
+    #dotnet-aspnetcore
+    dotnet-sdk_8
+    dotnet-runtime_8
+    dotnet-aspnetcore_8
+
     mono
     omnisharp-roslyn
     netcoredbg
