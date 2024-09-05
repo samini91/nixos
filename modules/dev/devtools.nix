@@ -28,6 +28,7 @@ in
     sqls
     yaml-language-server
     mermaid-cli
+    docker-compose
   ]);
 
 }
