@@ -26,5 +26,5 @@
     [ { device = "/dev/disk/by-uuid/1f7119cc-ba2f-4c82-b076-eac203f37ebf"; }
     ];
 
-  virtualisation.virtualbox.guest.enable = true;
+  #virtualisation.virtualbox.guest.enable = true;
 }

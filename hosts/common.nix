@@ -92,7 +92,7 @@ in
       ];
       
       # displayManager.sddm.enable = true;
-      displayManager.lightdm.enable = true;
+      # displayManager.lightdm.enable = true;
     };
 
   config.fonts.fonts = with pkgs; [

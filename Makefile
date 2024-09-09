@@ -10,3 +10,6 @@ MiniCompLink:
 NixOSLink:
 	rm -rf /etc/nixos
 	ln -sf $$(pwd) /etc/nixos
+
+GenerateIso:
+	nix build .#nixosConfigurations.buildvm.config.system.build.isoImage

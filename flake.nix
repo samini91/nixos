@@ -98,11 +98,32 @@
 
         nixosConfigurations = {
 
+          # TODO figure how to derive this from the main system
+          buildvm = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              ({ config, pkgs, modulesPath, ... }: {
+                nixpkgs.overlays = [ overlay-unstable ];
+                imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-graphical-gnome.nix") ];
+              })
+              ./modules/dev/default.nix
+              home-manager.nixosModules.home-manager
+              ./hosts/vm/configuration.nix
+            ];
+            # This maps to specialargs see vm/configuration.nix
+            specialArgs = { inherit inputs system; };
+            # specialArgs = inputs;
+            # specialArgs.channels = { inherit nixpkgs unstable; };
+          };
+
+
 
           vm = nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [
-              ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+              ({ config, pkgs, ... }: {
+                nixpkgs.overlays = [ overlay-unstable ];
+              })
               ./modules/dev/default.nix
               home-manager.nixosModules.home-manager
               ./hosts/vm/configuration.nix
