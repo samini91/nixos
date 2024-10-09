@@ -29,3 +29,12 @@ $ nix-env --list-generations --profile /nix/var/nix/profiles/system
 $ nix-env --delete-generations --profile /nix/var/nix/profiles/system 163 164
 # or anything older than 5 days
 $ nix-env --delete-generations --profile /nix/var/nix/profiles/system 
+
+
+
+xrandr 
+
+xrandr --newmode "2560x1440_360" 359.98 2560 2608 2640 2720 1440 1443 1448 1481
+xrandr --addmode Virtual-1 2560x1440_360
+xrandr --output Virtual-1 --mode 2560x1440_360
+
