@@ -38,3 +38,6 @@ xrandr --newmode "2560x1440_360" 359.98 2560 2608 2640 2720 1440 1443 1448 1481
 xrandr --addmode Virtual-1 2560x1440_360
 xrandr --output Virtual-1 --mode 2560x1440_360
 
+Laptop
+xrandr --output Virtual-1 --mode 2560x1600
+
