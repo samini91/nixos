@@ -8,8 +8,8 @@ in
   options.modules.dev.python.enable = mkEnableOption "Python";  
 
   config.environment.systemPackages = mkIf cfg.enable ([
-    python311
-    nodePackages_latest.pyright
+    python315
+    pyright
   ]);
 }
 

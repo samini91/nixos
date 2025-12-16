@@ -8,7 +8,7 @@
       #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
       # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";             # primary nixpkgs
       # 
-      nixpkgs = { url = "github:nixos/nixpkgs/nixos-24.05"; };
+      nixpkgs = { url = "github:nixos/nixpkgs/nixos-25.11"; };
       nixpkgs-unstable.url = "nixpkgs/nixos-unstable"; # Unstable nixpkgs
       flake-utils.url = "github:numtide/flake-utils";
       nixos-generators = {
@@ -16,7 +16,7 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
       
-      home-manager.url = "github:rycee/home-manager/release-24.05";
+      home-manager.url = "github:rycee/home-manager/release-25.11";
       # home-manager.url = "github:rycee/home-manager/master";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
       agenix.url = "github:ryantm/agenix";

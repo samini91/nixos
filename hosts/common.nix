@@ -31,14 +31,14 @@ in
     gcc
     pavucontrol
     gparted   
-    zk-shell
+    #zk-shell
     zlib
     zlib.dev
     p7zip
     vlc
     arandr
     haskellPackages.xmobar
-    emacs29
+    emacs
     ripgrep
 
     git
@@ -64,10 +64,6 @@ in
 
   # Enable the OpenSSH daemon.
   config.services.openssh.enable = true;
-
-  # Enable sound.
-  config.sound.enable = true;
-  config.hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
   config.services.xserver.enable = true;
@@ -96,9 +92,9 @@ in
     };
 
   config.fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
+#    noto-fonts
+#    noto-fonts-cjk
+#    noto-fonts-emoji
     liberation_ttf
     fira-code
     fira-code-symbols
