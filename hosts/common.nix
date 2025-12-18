@@ -12,6 +12,8 @@ in
 
   #environment.systemPackages =
   config.virtualisation.docker.enable = true;
+  config.virtualisation.vmware.guest.enable = true;
+  # config.virtualisation.vmware.guest.headless = true;
   config.nixpkgs.config.allowUnfree = true;
 
   config.environment.systemPackages = with pkgs; [
