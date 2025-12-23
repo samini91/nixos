@@ -43,5 +43,5 @@ xrandr --addmode Virtual-1 2560x1440_360
 xrandr --output Virtual-1 --mode 2560x1440_360
 
 Laptop
-xrandr --output Virtual-1 --mode 2560x1600
+xrandr --output  --output Virtual-1 --mode 2560x1600 --scale .8x.8
 
