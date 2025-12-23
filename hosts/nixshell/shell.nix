@@ -1,13 +1,14 @@
 { pkgs , ... }:
 
+let
+    myEmacs = (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs: with epkgs; [
+      vterm
+      treesit-grammars.with-all-grammars
+    ]);
+in
 pkgs.mkShell {
-  myEmacs = (pkgs.emacsPackagesFor pkgs.emacs) (epkgs: with epkgs; [
-    vterm
-    treesit-grammers.with-all-grammers
-  ]);
-
   imports = [
-    
+      
   ] ;
   packages = with pkgs; [      
     myEmacs
@@ -21,7 +22,7 @@ pkgs.mkShell {
     # libvterm
     minikube
     nixd
-    omnisharp-rosyln
+    omnisharp-roslyn
     netcoredbg
     typescript-go
     python311
