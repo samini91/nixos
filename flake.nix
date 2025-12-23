@@ -4,10 +4,6 @@
   inputs = 
     {
       # Core dependencies.
-      # nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";             # primary nixpkgs
-      #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-      # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";             # primary nixpkgs
-      # 
       nixpkgs = { url = "github:nixos/nixpkgs/nixos-25.11"; };
       nixpkgs-unstable.url = "nixpkgs/nixos-unstable"; # Unstable nixpkgs
       flake-utils.url = "github:numtide/flake-utils";
@@ -28,7 +24,7 @@
       # nixos-hardware.url = "github:nixos/nixos-hardware";
     };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, rust-overlay, nixos-generators, flake-utils ,... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, rust-overlay, nixos-generators, flake-utils, emacs-overlay ,... }:
     let
       overlay-unstable = final: prev: {
         unstable = nixpkgs.legacyPackages.${prev.system};
@@ -39,6 +35,13 @@
         # };
 
       };
+      mypkgs = system: import nixpkgs {
+        inherit system;
+        overlays = [
+          emacs-overlay.overlay
+        ];
+      };
+
     in 
       rec {
         system = "x86_64-linux";
@@ -157,7 +160,7 @@
       // flake-utils.lib.eachDefaultSystem 
         (system:
           {
-            devShells.default = import ./hosts/nixshell/shell.nix { pkgs = nixpkgs.legacyPackages.${system}; };
+            devShells.default = import ./hosts/nixshell/shell.nix { pkgs = mypkgs system; };
           }
         );
 }

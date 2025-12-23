@@ -1,11 +1,16 @@
 { pkgs , ... }:
 
 pkgs.mkShell {
+  myEmacs = (pkgs.emacsPackagesFor pkgs.emacs) (epkgs: with epkgs; [
+    vterm
+    treesit-grammers.with-all-grammers
+  ]);
+
   imports = [
     
   ] ;
   packages = with pkgs; [      
-    emacs29
+    myEmacs
     ripgrep
     git
     gnumake
@@ -15,9 +20,12 @@ pkgs.mkShell {
     libtool
     # libvterm
     minikube
-
+    nixd
+    omnisharp-rosyln
+    netcoredbg
+    typescript-go
     python311
-    nodePackages_latest.pyright
+    pyright
     sqls
     yaml-language-server
     mermaid-cli
