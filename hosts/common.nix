@@ -1,3 +1,4 @@
+
 # System level configs that I would want on every machine
 { config, options, pkgs, ... }:
 
@@ -97,14 +98,22 @@ in
 #    noto-fonts
 #    noto-fonts-cjk
 #    noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
-    proggyfonts
-    carlito
+    nerd-fonts.jetbrains-mono
+#    nerd-fonts
+#    liberation_ttf
+#    fira-code
+#    fira-code-symbols
+#    mplus-outline-fonts.githubRelease
+#    dina-font
+#    proggyfonts
+#    carlito
+#    iosevka
   ];
+
+  config.fonts.fontconfig.defaultFonts = {
+      sansSerif = ["Ubuntu"];
+      monospace = ["JetBrainsMono Nerd Font"];
+    };
 
   # config.services.picom = {
   #   enable = true;
