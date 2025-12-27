@@ -99,6 +99,7 @@ in
 #    noto-fonts-cjk
 #    noto-fonts-emoji
     nerd-fonts.jetbrains-mono
+    nerd-fonts.meslo-lg
 #    nerd-fonts
 #    liberation_ttf
 #    fira-code
@@ -112,7 +113,8 @@ in
 
   config.fonts.fontconfig.defaultFonts = {
       sansSerif = ["Ubuntu"];
-      monospace = ["JetBrainsMono Nerd Font"];
+      #monospace = ["JetBrainsMono Nerd Font"];
+      monospace = ["MesloLGM Nerd Font"];
     };
 
   # config.services.picom = {
