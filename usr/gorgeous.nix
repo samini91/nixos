@@ -54,11 +54,10 @@
           $DRY_RUN_CMD xmonad --restart
         fi
       '';
-
     };
 
     home.file.".Xmodmap".source = ./config/.Xmodmap;
-    home.file.".xmobarrc".source = ./config/.xmobarrc;
+    home.file.".xmobarrc/xmobar.hs".source = ./config/.xmobarrc/xmobar.hs;
     home.file.".config/picom/picom.conf".source = ./config/picom/picom.conf;
 
     home.stateVersion = config.system.stateVersion;

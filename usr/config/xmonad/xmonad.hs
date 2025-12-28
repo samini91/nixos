@@ -22,14 +22,26 @@ import qualified XMonad.Util.Run               as Run
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
+import XMonad.Actions.CopyWindow
 
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ScreenCorners
+import XMonad.Hooks.FadeWindows
 
 import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
-import XMonad.Util.Ungrab
+import XMonad.Config.Desktop
+
+
+-- import XMonad.Operations (unGrab)
+--import XMonad.Util.Ungrab
+
+
+import XMonad.Util.NamedScratchpad
 
 import XMonad.Layout.Magnifier
 
@@ -39,11 +51,13 @@ import XMonad.Util.ClickableWorkspaces
 
 main :: IO ()
 main =
-  xmonad
-   . withEasySB (statusBarProp "xmobar" (clickablePP myXmobarPP)) defToggleStrutsKey
+  xmonad $ withSB mySB . ewmh . docks $ myConfig  -- . defToggleStrutsKey
   -- . withEasySB (statusBarProp "xmobar" (clickableWrap myXmobarPP)) defToggleStrutsKey
---  . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
-  $ myConfig
+  --  . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
+  
+
+
+myStatusBar = "xmobar -x 0 ~/.xmobarrc/xmobar.hs"
 
 myStartupHook =
   do
@@ -61,42 +75,80 @@ temp = [
   "<action=xdotool key alt+" ++ "2" ++ ">" ++ "b" ++ "</action>"
        ]
 
-myConfig = def
+myConfig = desktopConfig
     {
       modMask = mod4Mask
 --    , workspaces = temp
     , borderWidth = 4
     , focusedBorderColor = "#000000"
     , startupHook = myStartupHook
+    , logHook = myLogHook
     , keys = \c -> mykeys c `M.union` keys def c
     }
 
-myXmobarPP :: PP
-myXmobarPP = def
-    { ppSep             = magenta " • "
-    , ppTitleSanitize   = xmobarStrip
-    , ppCurrent         = magenta . wrap "[" "]"
-    , ppHidden          = white . wrap " " ""
-    , ppHiddenNoWindows = lowWhite . wrap " " ""
-    , ppUrgent          = red . wrap (yellow "!") (yellow "!")
-    , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
-    , ppExtras          = [logTitles formatFocused formatUnfocused]
-    , ppTitle           = magenta . shorten 60
-    }
-  where
-    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
-    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
 
-    -- | Windows should have *some* title, which should not not exceed a
-    -- sane length.
-    ppWindow :: String -> String
-    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
+myPP :: PP
+myPP = filterOutWsPP [scratchpadWorkspaceTag] $ def
+        { ppCurrent = xmobarColor "#4381fb" "" . wrap "[" "]"
+        , ppHidden = xmobarColor "#d1426e" "" -- . clickableWS
+        , ppHiddenNoWindows = xmobarColor "#061d8e" "" -- . clickableWS
+        , ppUrgent = xmobarColor "#fa5c5f" "" -- . clickableWS
+        , ppTitle = xmobarColor "#ffffff" "" . shorten 50 
+        , ppSep = "<fc=#909090> | </fc>"
+        , ppWsSep = "<fc=#666666> . </fc>"
+        , ppExtras = [windowCount] 
+        , ppOrder = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+        }
 
-    blue, lowWhite, magenta, red, white, yellow :: String -> String
-    magenta  = xmobarColor "#ff79c6" ""
-    blue     = xmobarColor "#bd93f9" ""
-    white    = xmobarColor "#f8f8f2" ""
-    yellow   = xmobarColor "#f1fa8c" ""
-    red      = xmobarColor "#ff5555" ""
-    lowWhite = xmobarColor "#bbbbbb" ""
+windowCount :: X (Maybe String)
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
+mySB :: StatusBarConfig
+mySB = statusBarProp myStatusBar
+       --(copiesPP (xmobarColor "#6435e6" "" . clickableWS) myPP)
+       (copiesPP (xmobarColor "#6435e6" "") myPP)
+
+myLogHook = do
+    fadeWindowsLogHook myFadeHook
+    statusBarPPLogHook
+
+myFadeHook :: Query Opacity
+myFadeHook = composeAll 
+    [ opaque
+    , isUnfocused --> transparency 0.10
+    , isFullscreen --> opaque
+    ]
+
+statusBarPPLogHook :: X ()
+statusBarPPLogHook = dynamicLogWithPP $ myPP 
+
+--myXmobarPP :: PP
+--myXmobarPP = def
+--    { ppSep             = magenta " • "
+--    , ppTitleSanitize   = xmobarStrip
+--    , ppCurrent         = magenta . wrap "[" "]"
+--    , ppHidden          = white . wrap " " ""
+--    , ppHiddenNoWindows = lowWhite . wrap " " ""
+--    , ppUrgent          = red . wrap (yellow "!") (yellow "!")
+--    , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
+--    , ppExtras          = [logTitles formatFocused formatUnfocused]
+--    , ppTitle           = magenta . shorten 60
+--    }
+--  where
+--    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
+--    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
+--
+--    -- | Windows should have *some* title, which should not not exceed a
+--    -- sane length.
+--    ppWindow :: String -> String
+--    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
+--
+--    blue, lowWhite, magenta, red, white, yellow :: String -> String
+--    magenta  = xmobarColor "#ff79c6" ""
+--    blue     = xmobarColor "#bd93f9" ""
+--    white    = xmobarColor "#f8f8f2" ""
+--    yellow   = xmobarColor "#f1fa8c" ""
+--    red      = xmobarColor "#ff5555" ""
+--    lowWhite = xmobarColor "#bbbbbb" ""
+--
+--
