@@ -1,11 +1,3 @@
-
----------------------------------------------------------
---            xmobar config by Anapal                  --
---     My personal config for my (or your) needs.      --
---                                                     --
---      > https://github.com/AnapalOne/dotfiles        --
----------------------------------------------------------
-
 Config { 
 
    -- // appearance
