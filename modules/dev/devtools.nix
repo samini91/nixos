@@ -29,6 +29,7 @@ in
     yaml-language-server
     mermaid-cli
     docker-compose
+    claude-code
   ]);
 
 }
