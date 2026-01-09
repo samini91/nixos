@@ -56,6 +56,7 @@
               home-manager.nixosModules.home-manager
               ./hosts/common.nix
               ./modules/dev/default.nix
+              ./modules/services/default.nix
               ./usr/gorgeous.nix
             ];
             specialArgs = { inherit inputs system; };
@@ -74,6 +75,7 @@
               home-manager.nixosModules.home-manager
               ./hosts/common.nix
               ./modules/dev/default.nix
+              ./modules/services/default.nix
               ./usr/gorgeous.nix
             ];
             specialArgs = { inherit inputs system; };
@@ -88,6 +90,7 @@
               home-manager.nixosModules.home-manager
               ./hosts/common.nix
               ./modules/dev/default.nix
+              ./modules/services/default.nix
               ./usr/gorgeous.nix
             ];
             specialArgs = { inherit inputs system; };
@@ -110,6 +113,7 @@
                 nixpkgs.config.android_sdk.accept_license = true;
               })
               ./modules/dev/default.nix
+              ./modules/services/default.nix
               home-manager.nixosModules.home-manager
               ./hosts/vm_desktop/configuration.nix
             ];
@@ -127,6 +131,7 @@
                 nixpkgs.config.android_sdk.accept_license = true;
               })
               ./modules/dev/default.nix
+              ./modules/services/default.nix
               home-manager.nixosModules.home-manager
               ./hosts/vm_laptop/configuration.nix
             ];
@@ -144,6 +149,7 @@
                 nixpkgs.overlays = [ overlay-unstable ];
               })
               ./modules/dev/default.nix
+              ./modules/services/default.nix
               home-manager.nixosModules.home-manager
               ./hosts/minicomp/configuration.nix
             ];

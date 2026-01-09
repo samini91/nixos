@@ -16,5 +16,8 @@
       devtools.enable = true;
       android.enable = true;
     };
+    services = {
+      plex.enable = true;
+    };
   };
 }
