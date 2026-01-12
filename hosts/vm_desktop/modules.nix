@@ -18,6 +18,7 @@
     };
     services = {
       plex.enable = true;
+      jellyfin.enable = true;
     };
   };
 }

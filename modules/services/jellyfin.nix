@@ -3,19 +3,18 @@ with pkgs;
 with lib;
 
 let serviceCfg = config.modules.services;
-    cfg = serviceCfg.plex;
+    cfg = serviceCfg.jellyfin;
 in
 {
-  options.modules.services.plex.enable = mkEnableOption "Plex";  
+  options.modules.services.jellyfin.enable = mkEnableOption "Jellyfin";  
 
   config.services = mkIf cfg.enable {
-    plex = {
+    jellyfin = {
       enable = true;
       openFirewall = true;
       user="gorgeous";
     };
   };
 }
-
 
 

@@ -25,6 +25,12 @@
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
+  fileSystems."/mnt/gorgeous" = {
+    device = ".host:/";
+    fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
+    options = ["umask=22" "uid=1000" "gid=100" "allow_other" "defaults" "auto_unmount"];
+  };
+
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
