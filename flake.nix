@@ -141,6 +141,25 @@
             # specialArgs.channels = { inherit nixpkgs unstable; };
           };
 
+          silver_laptop = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              ({ config, pkgs, ... }: {
+                nixpkgs.overlays = [ overlay-unstable ];
+                nixpkgs.config.android_sdk.accept_license = true;
+              })
+              ./modules/dev/default.nix
+              ./modules/services/default.nix
+              home-manager.nixosModules.home-manager
+              ./hosts/silver_laptop/configuration.nix
+            ];
+            # This maps to specialargs see vm/configuration.nix
+            specialArgs = { inherit inputs system; };
+            # specialArgs = inputs;
+            # specialArgs.channels = { inherit nixpkgs unstable; };
+          };
+
+
 
           minicomp = nixpkgs.lib.nixosSystem {
             inherit system;
