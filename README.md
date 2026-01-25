@@ -33,7 +33,8 @@ $ nix-env --list-generations --profile /nix/var/nix/profiles/system
 $ nix-env --delete-generations --profile /nix/var/nix/profiles/system 163 164
 # or anything older than 5 days
 $ nix-env --delete-generations --profile /nix/var/nix/profiles/system 
-
+# specific generations
+nix-env --delete-generations --profile /nix/var/nix/profiles/system 285 286 287 288 289 290 291 292 293 294 295 296 297 298
 
 
 xrandr 
