@@ -36,6 +36,8 @@ $ nix-env --delete-generations --profile /nix/var/nix/profiles/system
 # specific generations
 nix-env --delete-generations --profile /nix/var/nix/profiles/system 285 286 287 288 289 290 291 292 293 294 295 296 297 298
 
+# Delete all but current
+$ nix-env --delete-generations --profile /nix/var/nix/profiles/system old
 
 xrandr 
 

@@ -8,7 +8,7 @@ in
   options.modules.dev.node.enable = mkEnableOption "Node";  
 
   config.environment.systemPackages = mkIf cfg.enable ([
-    nodejs_20
+    nodejs
     # x2goclient
   ]);
 }

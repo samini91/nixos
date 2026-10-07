@@ -2,11 +2,16 @@
 
 let
   # update this hash for newer versions of unstable stuff
-  v22_05 = import
+  emacsPkgs = import
     (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/bea03ac862a747dcd8545bbbb9d5a1da6fcf0e8c){};
+
+  myEmacs = (emacsPkgs.emacsPackagesFor emacsPkgs.emacs).emacsWithPackages (epkgs: with epkgs; [
+      # vterm
+      treesit-grammars.with-all-grammars
+    ]);
 in 
 [
-  v22_05.emacs
+  myEmacs
 ]
 
 #  home-manager.users.gorgeous.home.sessionVariables = {

@@ -4,7 +4,7 @@
   inputs = 
     {
       # Core dependencies.
-      nixpkgs = { url = "github:nixos/nixpkgs/nixos-25.11"; };
+      nixpkgs = { url = "github:nixos/nixpkgs/nixos-26.05"; };
       nixpkgs-unstable.url = "nixpkgs/nixos-unstable"; # Unstable nixpkgs
       flake-utils.url = "github:numtide/flake-utils";
       nixos-generators = {
@@ -12,7 +12,7 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
       
-      home-manager.url = "github:rycee/home-manager/release-25.11";
+      home-manager.url = "github:rycee/home-manager/release-26.05";
       # home-manager.url = "github:rycee/home-manager/master";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
       agenix.url = "github:ryantm/agenix";
