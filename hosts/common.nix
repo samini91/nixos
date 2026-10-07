@@ -4,6 +4,10 @@
 
 let
   listFuncs = pkgs.lib.lists;
+  myEmacs = (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs: with epkgs; [
+      # vterm
+      treesit-grammars.with-all-grammars
+    ]);
 in
 {
 
@@ -41,7 +45,7 @@ in
     vlc
     arandr
     haskellPackages.xmobar
-    emacs
+    myEmacs
     ripgrep
 
     git
